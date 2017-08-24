@@ -13,6 +13,6 @@
 
 Route::get('/', 'PagesController@getWelcome');
 
-Route::get('home', 'PagesController@getHome');
-Route::get('settings', 'PagesController@getSettings');
+Route::get('home', 'PagesController@getHome')->middleware('facebook');
+Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
 

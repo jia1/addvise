@@ -56,5 +56,8 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        // Redirects user to Welcome page if not connected to Facebook
+        'facebook' => \App\Http\Middleware\IsConnectedToFacebook::class,
     ];
 }
