@@ -13,10 +13,12 @@ class CreateUserSettingsTable extends Migration
      */
     public function up()
     {
+        /*
         Schema::create('user_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
+        */
     }
 
     /**
