@@ -15,8 +15,8 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('facebook_user_id')->nullable()->unsigned()->index();
-            $table->timestamps();
+            $table->bigInteger('facebook_user_id')->unsigned()->unique()->index();
+            $table->timestampTz('added_on');
         });
     }
 

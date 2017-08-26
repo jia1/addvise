@@ -13,10 +13,12 @@ class CreateAdviceCommentsTable extends Migration
      */
     public function up()
     {
+		/*
         Schema::create('advice_comments', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
+		*/
     }
 
     /**
