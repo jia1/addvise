@@ -46,7 +46,11 @@ html, body {
     right: 10px;
     top: 18px;
 }
-
+.top-left {
+    position: absolute;
+    left: 10px;
+    top: 18px;
+}
 .content {
     text-align: center;
 }
@@ -72,5 +76,14 @@ html, body {
 
 @yield('stylesheets')
 @yield('scripts')
+
 </head>
+
+<body>
+
+<div class="top-left">
+   <img src = "{{URL::asset('/img/facebookElephant.png')}}" alt="logo" height="150" width="150">
+</div>
+
+</body>
 
