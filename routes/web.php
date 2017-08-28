@@ -16,3 +16,6 @@ Route::get('/', 'PagesController@getWelcome');
 Route::get('home', 'PagesController@getHome')->middleware('facebook');
 Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
 
+Route::get('needAddvise/new', 'AdviseesController@getTakeAdviceNew')->middleware('facebook');
+Route::post('needAddvise/create', 'AdviseesController@postTakeAdviceCreate')->middleware('facebook');
+

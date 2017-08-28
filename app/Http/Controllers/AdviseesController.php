@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 class AdviseesController extends Controller {
     // CREATE: View for creating a request for advice
     public function getTakeAdviceNew() {
-        ;
+        return view('advisees.requests.new');
     }
 
     // CREATE: Create a request for advice
     public function postTakeAdviceCreate() {
-        ;
+        // Placeholder logic
+        return redirect()->action('PagesController@getWelcome');
     }
 
     // READ: View for showing all requests made by the user, plus their advice
