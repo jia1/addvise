@@ -1,13 +1,12 @@
 <script>
 
 window.fbAsyncInit = function() {
-    FB.init({
-        appId : '1592283090803235',
-            autoLogAppEvents : true,
-            cookie           : true,
-            status           : false,
-            xfbml            : true,
-            version          : 'v2.10'
+    FB.init({appId : '1592283090803235',
+        autoLogAppEvents : true,
+        cookie           : true,
+        status           : true,
+        xfbml            : true,
+        version          : 'v2.10'
     });
     FB.AppEvents.logPageView();
 
@@ -15,39 +14,31 @@ window.fbAsyncInit = function() {
         console.log(response);
         if (response.status === 'connected') {
             // Is logged in to Facebook and has authorized this app
-            $('.top-right.links').html('<a href="{{ url('home') }}">Home</a>'
-                + '<a href="{{ url('settings') }}">Settings</a>'
-                + '<a id="logout">Logout</a>'
-            );
-            $('#logout').click(function(response) {
+            $('.nav-internal').show();
+            $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");
                 console.log(response);
             });
-        } else if (response.status === 'not_authorized') {
-            // Is logged in to Facebook but has not authorized this app
-            $('.top-right.links').html('<a id="login">Login with Facebook</a>');
         } else {
+            // Either:
+            // Is logged in to Facebook but has not authorized this app, OR
             // Is not logged in to Facebook
-            FB.Event.subscribe('auth.statusChange', function(response) {
-                console.log(response);
+            $('.nav-external').show();
+            $('.login').click(function() {
+                FB.login(function(response) {
+                    console.log(response);
+                    if (response.authResponse) {
+                        window.location.replace("{{ url('home') }}");
+                    } else {
+                        alert("Facebook login failure. You closed the login window, right?");
+                    }
+                }, {scope: 'public_profile,user_friends,email',
+                    return_scopes: true
+                });
             });
-            $('.top-right.links').html('<a id="login">Login with Facebook</a>');
         }
-        $('#login').click(function() {
-            FB.login(function(response) {
-                if (response.authResponse) {
-                    window.location.replace("{{ url('home') }}");
-                } else {
-                    alert("Facebook login failure. You closed the login window, right?");
-                }
-            }, {
-                scope: 'email',
-                    return_scopes: true,
-            });
-        });
     }, true);
-
 };
 
 (function(d, s, id){
