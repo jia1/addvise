@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use SammyK;
+
 class AdviseesController extends Controller {
     // CREATE: View for creating a request for advice
     public function getTakeAdviceNew() {
@@ -9,7 +13,25 @@ class AdviseesController extends Controller {
     }
 
     // CREATE: Create a request for advice
-    public function postTakeAdviceCreate() {
+    public function postTakeAdviceCreate(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+        $message = $request->get('message');
+        $is_anonymous = $request->get('is_anonymous');
+
+        $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
+
+        if (! $access_token) {
+            Log::info('$access_token is false');
+        } else {
+            try {
+                $response = $fb->post('/addvise/feed', ['message' => $message], $access_token);
+                Log::info($response);
+                // Add response information to database from here
+            } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+                dd($e->getMessage());
+                Log::info($e->getMessage());
+            }
+        }
+
         // Placeholder logic
         return redirect()->action('PagesController@getWelcome');
     }
