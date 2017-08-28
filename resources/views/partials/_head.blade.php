@@ -82,7 +82,7 @@ html, body {
 <body>
 
 <div class="top-left">
-   <img src = "{{URL::asset('/img/facebookElephant.png')}}" alt="logo" height="150" width="150">
+   <img src = "{{URL::asset('/img/logo.png')}}" alt="logo" height="150" width="150">
 </div>
 
 </body>
