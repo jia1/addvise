@@ -18,12 +18,13 @@ class AdviseesController extends Controller {
         $is_anonymous = $request->get('is_anonymous');
 
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
+        $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
 
-        if (! $access_token) {
-            Log::info('$access_token is false');
+        if (! $access_token || ! $feed_uri) {
+            Log::info('CREATE: No $access_token or $feed_uri in .env');
         } else {
             try {
-                $response = $fb->post('/addvise/feed', ['message' => $message], $access_token);
+                $response = $fb->post($feed_uri, ['message' => $message], $access_token);
                 // Add response information to database from here
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
@@ -36,8 +37,30 @@ class AdviseesController extends Controller {
     }
 
     // READ: View for showing all requests made by the user, plus their advice
-    public function getTakeAdviceIndex() {
-        ;
+    public function getTakeAdviceIndex(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+        $data = [];
+
+        $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
+        $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
+
+        if (! $access_token || ! $feed_uri) {
+            Log::info('INDEX: No $access_token or $feed_uri in .env');
+        } else {
+            try {
+                $response = $fb->get($feed_uri . '?fields=message&until=now&since=-2weeks&limit=14', $access_token);
+                $data = $response->getDecodedBody()['data'];
+                foreach ($data as $key=>$val) {
+                    if (array_key_exists('message', $data[$key])) {
+                        $data[$key] = $val['message'];
+                    }
+                }
+            } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+                dd($e->getMessage());
+                Log::info($e->getMessage());
+            }
+        }
+
+        return view('advisees.requests.index', ['advice_requests' => json_encode($data)]);
     }
 
     // READ: View for showing a specific request made by the user, plus its advice
