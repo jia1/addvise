@@ -24,7 +24,6 @@ class AdviseesController extends Controller {
         } else {
             try {
                 $response = $fb->post('/addvise/feed', ['message' => $message], $access_token);
-                Log::info($response);
                 // Add response information to database from here
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
