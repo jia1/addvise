@@ -49,9 +49,10 @@ class AdviseesController extends Controller {
             try {
                 $response = $fb->get($feed_uri . '?fields=message&until=now&since=-2weeks&limit=14', $access_token);
                 $data = $response->getDecodedBody()['data'];
+                $advice_requests = [];
                 foreach ($data as $key=>$val) {
                     if (array_key_exists('message', $data[$key])) {
-                        $data[$key] = $val['message'];
+                        array_push($advice_requests, $val['message']);
                     }
                 }
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
@@ -60,7 +61,7 @@ class AdviseesController extends Controller {
             }
         }
 
-        return view('advisees.requests.index', ['advice_requests' => json_encode($data)]);
+        return view('advisees.requests.index', ['advice_requests' => json_encode($advice_requests)]);
     }
 
     // READ: View for showing a specific request made by the user, plus its advice
