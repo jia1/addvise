@@ -6,7 +6,7 @@
     <div class="nav-internal" style="display: none;">
         <a href="{{ url('home') }}">Home</a>
         <a href="{{ url('settings') }}">Settings</a>
-        <a class="logout">Logout</a>'
+        <a class="logout">Logout</a>
     </div>
 </div>
 
