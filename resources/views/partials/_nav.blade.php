@@ -1,6 +1,6 @@
-<div class="top-right links" style="position:absolute; right:20px;">
+<div class="top-right links">
     <div class="nav-external" style="display: none;">
-          <a class="login">Login with Facebook </a>
+        <a class="login">Login with Facebook</a>
     </div>
 
     <div class="nav-internal" style="display: none;">
