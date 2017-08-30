@@ -11,14 +11,12 @@ window.fbAsyncInit = function() {
     FB.AppEvents.logPageView();
 
     FB.getLoginStatus(function(response) {
-        console.log(response);
         if (response.status === 'connected') {
             // Is logged in to Facebook and has authorized this app
             $('.nav-internal').show();
             $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");
-                console.log(response);
             });
         } else {
             // Either:
@@ -27,18 +25,17 @@ window.fbAsyncInit = function() {
             $('.nav-external').show();
             $('.login').click(function() {
                 FB.login(function(response) {
-                    console.log(response);
                     if (response.authResponse) {
                         window.location.replace("{{ url('home') }}");
                     } else {
                         alert("Facebook login failure. You closed the login window, right?");
                     }
-                }, {scope: 'public_profile,user_friends,email',
+                }, {scope: 'public_profile,email',
                     return_scopes: true
                 });
             });
         }
-    }, true);
+    });
 };
 
 (function(d, s, id){
