@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AdviceRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Log;
+use Request;
 use SammyK;
 
 class AdviseesController extends Controller {
@@ -22,11 +22,17 @@ class AdviseesController extends Controller {
         $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
 
         if (! $access_token || ! $feed_uri) {
-            Log::info('CREATE: No $access_token or $feed_uri in .env');
+            ;
         } else {
             try {
                 $response = $fb->post($feed_uri, ['message' => $message], $access_token);
-                $fb_id = $response->getDecodedBody()['id'];
+                $response_array = $response->getDecodedBody();
+
+                if (! array_key_exists('id', $response_array)) {
+                    // Handle exception
+                }
+
+                $fb_id = $response_array['id'];
 
                 // Add created #needAddvise to database
                 $advice_request = new AdviceRequest;
@@ -35,7 +41,6 @@ class AdviseesController extends Controller {
                 $advice_request->save();
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
-                Log::info($e->getMessage());
             }
         }
 
@@ -51,11 +56,17 @@ class AdviseesController extends Controller {
         $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
 
         if (! $access_token || ! $feed_uri) {
-            Log::info('INDEX: No $access_token or $feed_uri in .env');
+            ;
         } else {
             try {
                 $response = $fb->get($feed_uri . '?fields=message&until=now&since=-2weeks&limit=14', $access_token);
-                $data = $response->getDecodedBody()['data'];
+                $response_array = $response->getDecodedBody();
+
+                if (! array_key_exists('data', $response_array)) {
+                    // Handle exception
+                }
+
+                $data = $response_array['data'];
                 $advice_requests = [];
                 foreach ($data as $key=>$val) {
                     if (array_key_exists('message', $data[$key])) {
@@ -64,7 +75,6 @@ class AdviseesController extends Controller {
                 }
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
-                Log::info($e->getMessage());
             }
         }
 

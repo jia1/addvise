@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AdviceRequest;
 use App\AdviceGiven;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Log;
+use Request;
 use SammyK;
 
 class AdvisorsController extends Controller {
@@ -18,7 +18,6 @@ class AdvisorsController extends Controller {
     public function postGiveAdviceCreate($id, Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $advice_request_id = $id;
         $fb_post_id = AdviceRequest::where('id', $advice_request_id)->first()->value('fb_post_id');
-        Log::info($fb_post_id);
 
         $message = $request->get('message');
         $is_anonymous = $request->get('is_anonymous');
@@ -27,12 +26,17 @@ class AdvisorsController extends Controller {
         $fb_page_id_uri = env('FACEBOOK_PAGE_ID_URI', false);
 
         if (! $access_token || ! $fb_page_id_uri) {
-            Log::info('CREATE ADVICE: No $access_token or $feed_uri in .env');
+            ;
         } else {
             try {
                 $response = $fb->post($fb_page_id_uri . $fb_post_id . '/comments', ['message' => $message], $access_token);
-                Log::info($response->getDecodedBody());
-                $fb_id = $response->getDecodedBody()['id'];
+                $response_array = $response->getDecodedBody();
+
+                if (! array_key_exists('id', $response_array)) {
+                    // Handle exception
+                }
+
+                $fb_id = $response_array['id'];
 
                 // Add created advice to database
                 $advice_given = new AdviceGiven;
@@ -42,7 +46,6 @@ class AdvisorsController extends Controller {
                 $advice_given->save();
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
-                Log::info($e->getMessage());
             }
         }
 
