@@ -14,7 +14,7 @@ class UsersController extends Controller
     public function getUserUpsert(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $fb_user_id = \Request::get('fb_user_id');
 
-        $user = User::where('fb_user_id', '=', $fb_user_id)->first();
+        $user = User::where('fb_user_id', $fb_user_id)->first();
         if ($user === null) {
             $new_user = new User;
             $new_user->fb_user_id = $fb_user_id;
