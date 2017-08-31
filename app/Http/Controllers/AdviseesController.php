@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AdviceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use SammyK;
@@ -25,7 +26,13 @@ class AdviseesController extends Controller {
         } else {
             try {
                 $response = $fb->post($feed_uri, ['message' => $message], $access_token);
-                // Add response information to database from here
+                $fb_id = $response->getDecodedBody()['id'];
+
+                // Add created #needAddvise to database
+                $advice_request = new AdviceRequest;
+                $advice_request->facebook_post_id = explode('_', $fb_id)[1];
+                $advice_request->facebook_user_id = \Request::get('fb_user_id');
+                $advice_request->save();
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
                 Log::info($e->getMessage());
