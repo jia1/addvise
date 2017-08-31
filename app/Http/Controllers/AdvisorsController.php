@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AdviceRequest;
+use App\AdviceGiven;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use SammyK;
@@ -31,8 +32,14 @@ class AdvisorsController extends Controller {
             try {
                 $response = $fb->post($fb_page_id_uri . $fb_post_id . '/comments', ['message' => $message], $access_token);
                 Log::info($response->getDecodedBody());
-                $fb_comment_id = $response->getDecodedBody()['id'];
-                // Add response information to database from here
+                $fb_id = $response->getDecodedBody()['id'];
+
+                // Add created advice to database
+                $advice_given = new AdviceGiven;
+                $advice_given->fb_comment_id = explode('_', $fb_id)[1];
+                $advice_given->fb_post_id = $fb_post_id;
+                $advice_given->fb_user_id = \Request::get('fb_user_id');
+                $advice_given->save();
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
                 Log::info($e->getMessage());
