@@ -59,7 +59,8 @@ class AdviseesController extends Controller {
             ;
         } else {
             try {
-                $response = $fb->get($feed_uri . '?fields=message&until=now&since=-2weeks&limit=14', $access_token);
+                $response = $fb->get($feed_uri . '?fields=created_time,message,id,comments.summary(true)&limit=10',
+                    $access_token);
                 $response_array = $response->getDecodedBody();
 
                 if (! array_key_exists('data', $response_array)) {
