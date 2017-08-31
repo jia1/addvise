@@ -91,8 +91,12 @@ class AdviseesController extends Controller {
     }
 
     // READ: View for showing a specific request made by the user, plus its advice
-    public function getTakeAdviceShow() {
-        ;
+    public function getTakeAdviceShow(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+        $advice_request_ids = AdviceRequest::select('fb_post_id')->where('fb_user_id', \Request::get('fb_user_id'))
+            ->take(10)->get()->toArray();
+        $advice_requests = $advice_request_ids;
+
+        return view('advisees.requests.show', ['advice_requests' => json_encode($advice_requests)]);
     }
 
     // UPDATE: View for editing and updating a specific request made by the user previously
