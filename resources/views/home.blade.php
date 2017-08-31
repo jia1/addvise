@@ -79,20 +79,7 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-                                <ul class="features">
-                                    <li>
-                                        <span class="icon major style1 fa-code"></span>
-                                        <h3>User A</h3>
-                                    </li>
-                                    <li>
-                                        <span class="icon major style3 fa-copy"></span>
-                                        <h3>User B</h3>
-                                    </li>
-                                    <li>
-                                        <span class="icon major style5 fa-diamond"></span>
-                                        <h3>User C</h3>
-                                    </li>
-                                </ul>
+                                 <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
                             </section>
                     </div>
 
