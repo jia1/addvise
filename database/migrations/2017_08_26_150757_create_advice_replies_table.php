@@ -11,28 +11,27 @@ class CreateAdviceRepliesTable extends Migration
      *
      * @return void
      */
-     public function up()
-     {
-         Schema::create('advice_replies', function (Blueprint $table) {
-             $table->increments('id');
-             $table->bigInteger('facebook_reply_id')->unsigned()->unique()->index();
-             $table->bigInteger('facebook_user_id')->unsigned()->index();
-             $table->bigInteger('facebook_comment_id')->unsigned()->index();
-             $table->timestampTz('added_on');
-         });
-         Schema::table('advice_replies', function($table) {
-            $table->foreign('facebook_user_id')->references('facebook_user_id')->on('users');
-            $table->foreign('facebook_comment_id')->references('facebook_comment_id')->on('advice_given');
+    public function up()
+    {
+        Schema::create('advice_replies', function (Blueprint $table) {
+            $table->increments('id');
+            $table->bigInteger('fb_reply_id')->unsigned()->unique()->index();
+            $table->bigInteger('fb_user_id')->unsigned()->index();
+            $table->bigInteger('fb_comment_id')->unsigned()->index();
         });
-     }
- 
-     /**
-      * Reverse the migrations.
-      *
-      * @return void
-      */
-     public function down()
-     {
-         Schema::dropIfExists('advice_replies');
-     }
+        Schema::table('advice_replies', function($table) {
+            $table->foreign('fb_user_id')->references('fb_user_id')->on('users');
+            $table->foreign('fb_comment_id')->references('fb_comment_id')->on('advice_given');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('advice_replies');
+    }
 }

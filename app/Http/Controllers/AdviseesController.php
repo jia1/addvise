@@ -30,8 +30,8 @@ class AdviseesController extends Controller {
 
                 // Add created #needAddvise to database
                 $advice_request = new AdviceRequest;
-                $advice_request->facebook_post_id = explode('_', $fb_id)[1];
-                $advice_request->facebook_user_id = \Request::get('fb_user_id');
+                $advice_request->fb_post_id = explode('_', $fb_id)[1];
+                $advice_request->fb_user_id = \Request::get('fb_user_id');
                 $advice_request->save();
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());

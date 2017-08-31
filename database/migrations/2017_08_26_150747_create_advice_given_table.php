@@ -15,14 +15,13 @@ class CreateAdviceGivenTable extends Migration
     {
         Schema::create('advice_given', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('facebook_comment_id')->unsigned()->unique()->index();
-            $table->bigInteger('facebook_user_id')->unsigned()->index();
-            $table->bigInteger('facebook_post_id')->unsigned()->index();
-            $table->timestampTz('added_on');
+            $table->bigInteger('fb_comment_id')->unsigned()->unique()->index();
+            $table->bigInteger('fb_user_id')->unsigned()->index();
+            $table->bigInteger('fb_post_id')->unsigned()->index();
         });
         Schema::table('advice_given', function($table) {
-            $table->foreign('facebook_user_id')->references('facebook_user_id')->on('users');
-            $table->foreign('facebook_post_id')->references('facebook_post_id')->on('advice_requests');
+            $table->foreign('fb_user_id')->references('fb_user_id')->on('users');
+            $table->foreign('fb_post_id')->references('fb_post_id')->on('advice_requests');
         });
     }
 
