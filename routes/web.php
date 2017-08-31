@@ -47,10 +47,10 @@ Route::get('needAddvise/me', 'AdviseesController@getTakeAdviceShow')->middleware
 Route::get('advice', 'AdvisorsController@getGiveAdviceIndex')->middleware('facebook');
 
 // View for creating a new advice for an existing #needAddvise
-Route::get('{id}/advice/new', 'AdvisorsController@getGiveAdviceNew')->middleware('facebook');
+Route::get('needAddvise/{id}/advice/new', 'AdvisorsController@getGiveAdviceNew')->middleware('facebook');
 
 // Comment on Facebook and store relevant identifcation in database
-Route::post('{id}/advice/create', 'AdvisorsController@postGiveAdviceCreate')->middleware('facebook');
+Route::post('needAddvise/{id}/advice/create', 'AdvisorsController@postGiveAdviceCreate')->middleware('facebook');
 
 // View for all advice given by the user
 Route::get('advice/me', 'AdvisorsController@getGiveAdviceShow')->middleware('facebook');
