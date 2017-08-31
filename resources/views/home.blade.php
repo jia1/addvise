@@ -59,7 +59,7 @@
                                             <option value="audi">Others</option>
                                             </select> <br>
                                             <input type="text" name="request"><br>
-                                            <input type="submit" value="Submit">
+                                            <input type="submit" value="Submit" onclick = "return submitAction();">
                                         </ul>
                                     </div>
                                 </div>
@@ -105,6 +105,15 @@
             <script src="/js/skel.min.js"></script>
             <script src="/js/util.js"></script>
             <script src="/js/main.js"></script>
+            <script>
+            function submitAction(){
+                alert('Request posted successfully!');
+                var req = document.getElementsByName("request")[0];
+                req.value = "";
+                $('select').prop('selectedIndex', 0);
+            }
+            </script>
+
 
     </body>
 </html>
