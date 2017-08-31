@@ -24,4 +24,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
     ];
+
+    public $timestamps = false;
 }
