@@ -15,12 +15,11 @@ class CreateAdviceRequestsTable extends Migration
     {
         Schema::create('advice_requests', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('facebook_post_id')->unsigned()->unique()->index();
-            $table->bigInteger('facebook_user_id')->unsigned()->index();
-            $table->timestampTz('added_on');
+            $table->bigInteger('fb_post_id')->unsigned()->unique()->index();
+            $table->bigInteger('fb_user_id')->unsigned()->index();
         });
         Schema::table('advice_requests', function($table) {
-            $table->foreign('facebook_user_id')->references('facebook_user_id')->on('users');
+            $table->foreign('fb_user_id')->references('fb_user_id')->on('users');
         });
     }
 

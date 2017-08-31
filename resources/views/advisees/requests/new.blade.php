@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include('layouts._form')
+@include('partials._requestForm')
 
 @stop
 

@@ -26,7 +26,7 @@ window.fbAsyncInit = function() {
             $('.login').click(function() {
                 FB.login(function(response) {
                     if (response.authResponse) {
-                        window.location.replace("{{ url('home') }}");
+                        window.location.replace("{{ url('init') }}");
                     } else {
                         alert("Facebook login failure. You closed the login window, right?");
                     }

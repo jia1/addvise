@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use App;
 use Log;
+use SammyK;
 
 class IsConnectedToFacebook
 {
@@ -35,6 +36,9 @@ class IsConnectedToFacebook
             return redirect('/');
         }
 
+        $response = $fb->get('/me', $token);
+        $fb_user_id = $response->getDecodedBody()['id'];
+        $request->attributes->add(['fb_user_id' => $fb_user_id]);
         return $next($request);
     }
 }
