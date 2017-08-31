@@ -71,7 +71,15 @@ class AdviseesController extends Controller {
                 $advice_requests = [];
                 foreach ($data as $key=>$val) {
                     if (array_key_exists('message', $data[$key])) {
-                        array_push($advice_requests, $val['message']);
+                        $advice_requests[$key] = [];
+                        $advice_requests[$key]['created_time'] = $val['created_time'];
+                        $advice_requests[$key]['message'] = $val['message'];
+                        $advice_requests[$key]['id'] = $val['id'];
+                        $advice_requests[$key]['comments'] = [];
+                        foreach ($val['comments']['data'] as $c_key=>$c_val) {
+                            $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
+                        }
+                        $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
                     }
                 }
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
@@ -79,6 +87,7 @@ class AdviseesController extends Controller {
             }
         }
 
+        Log::info($advice_requests);
         return view('advisees.requests.index', ['advice_requests' => json_encode($advice_requests)]);
     }
 
