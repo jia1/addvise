@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\AdviceRequest;
 use App\AdviceGiven;
+use Illuminate\Http\Request;
 use Log;
-use Request;
 use SammyK;
 
 class AdvisorsController extends Controller {

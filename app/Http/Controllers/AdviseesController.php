@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\AdviceRequest;
+use Illuminate\Http\Request;
 use Log;
-use Request;
 use SammyK;
 
 class AdviseesController extends Controller {
