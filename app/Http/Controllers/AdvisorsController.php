@@ -96,15 +96,16 @@ class AdvisorsController extends Controller {
             return $fb_page_id . $arr['fb_post_id'];
         }, $fb_post_ids);
 
-        $serialized_ids = implode(',', $fb_post_ids_full);
-
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
         $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
 
-        if (! $access_token || ! $feed_uri) {
+        if (! $fb_post_ids_full || ! $access_token || ! $feed_uri) {
             ;
         } else {
             try {
+                $serialized_ids = implode(',', $fb_post_ids_full);
+
+
                 $response = $fb->get('?fields=created_time,message,id,comments.summary(true)&ids=' . $serialized_ids,
                     $access_token);
                 $data = $response->getDecodedBody();
@@ -128,7 +129,6 @@ class AdvisorsController extends Controller {
         }
 
         return view('advisees.requests.show', ['advice_requests' => json_encode($advice_requests)]);
-
     }
 
     // UPDATE: View for editing and updating a specific advice given by the user previously
