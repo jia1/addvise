@@ -79,7 +79,6 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-                                 <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
 
                                  <div class="row">
                                  <div class="6u 12u(narrower)">
