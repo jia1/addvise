@@ -80,6 +80,32 @@
                                             <option value="audi">Others</option>
                                             </select> <br>
                                  <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
+                                 <div class="row">
+                                    <div class="6u 12u(narrower)">
+                                        <section class="box special">
+                                            <p>01/10/2017</p>
+                                            <p>I need advice...</p>
+                                            <p>4 comments</p>
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">>
+                                        </section>
+                                    </div>
+
+                                    @foreach(json_decode($advice_requests, true) as $post)
+                                    <div class="6u 12u(narrower)">
+                                    <section class="box special">
+                                        <p>{{ $post['created_time'] }}</p>
+                                        <p>{{ $post['message'] }}</p>
+                                        <p>{{ $post['comment_count'] }} comments</p>
+                                        @foreach($post['comments'] as $comment)
+                                            <p>{{ $comment }}</p>
+                                        <input type="text" name="answer"><br>
+                                        <input type="submit" value="Comment" onclick = "return submitAction();">
+                                        
+                                    </section>
+                                    </div>
+                                    @endforeach
+                                </div>
                             </section>
                     </div>
 
