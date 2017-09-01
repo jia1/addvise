@@ -26,8 +26,8 @@
                 <!-- Header -->
                     <header id="header" class="alt">
                         <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
-                        <h1>Addvise</h1>
-                        <p>Seek Advice, Give Advice.</p>
+                        <h1><b><font color=#F39C12>Add</font><font color=#FFC300>vise</font></b></h1>
+                        <p>Seek Advice & Give Advice</p>
                     </header>
 
                 <!-- Nav -->
