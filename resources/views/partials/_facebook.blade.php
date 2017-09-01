@@ -24,13 +24,15 @@ window.fbAsyncInit = function() {
             $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");
+                $('.nav-internal').hide();
+                $('.nav-external').show();
             });
         } else {
             // Either:
             // Is logged in to Facebook but has not authorized this app, OR
             // Is not logged in to Facebook
             $('.nav-external').show();
-            $('.login').click(function() {
+            $('#login').click(function() {
                 FB.login(function(response) {
                     if (response.authResponse) {
                         window.location.replace("{{ url('init') }}");
