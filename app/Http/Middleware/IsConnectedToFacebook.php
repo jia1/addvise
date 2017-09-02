@@ -20,18 +20,22 @@ class IsConnectedToFacebook
      */
     public function handle($request, Closure $next)
     {
-        Log::info('Executing middleware IsConnectedToFacebook');
+        Log::info('Middleware IsConnectedToFacebook: Executing...');
 
         try {
             $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
             $token = $fb->getJavaScriptHelper()->getAccessToken();
         } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            Log::error('Middleware IsConnectedToFacebook: FacebookSDKException');
             Log::error($e->getMessage());
         } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            Log::warn('Middleware IsConnectedToFacebook: FacebookResponseException');
+            Log::warn($e->getMessage());
             $token = '';
         }
 
         if (! $token) {
+            Log::error('Middleware IsConnectedToFacebook: (JavaScript) $token is falsey.');
             return redirect('/');
         }
 
@@ -40,6 +44,8 @@ class IsConnectedToFacebook
         $fb_user_id = 0;
 
         if (! $fb_user_token_row || ! array_key_exists('fb_user_token_long', $fb_user_token_row) || ! array_key_exists('fb_user_id', $fb_user_token_row)) {
+            Log::info('Middleware IsConnectedToFacebook: Token row does not exist for User.');
+        } else {
             $fb_user_token_long = $fb_user_token_row['fb_user_token_long'];
             $fb_user_id = $fb_user_token_row['fb_user_id'];
         }
@@ -50,6 +56,7 @@ class IsConnectedToFacebook
                 $app_secret = env('FACEBOOK_APP_SECRET', false);
 
                 if (! $app_id || ! $app_secret) {
+                    Log::error('Middleware IsConnectedToFacebook: Either FACEBOOK_APP_ID or FACEBOOK_APP_SECRET is falsey.');
                     return redirect('/');
                 }
 
@@ -57,7 +64,7 @@ class IsConnectedToFacebook
                     . $app_id . '&client_secret=' . $app_secret . '&fb_exchange_token=' . $token,
                     $token);
                 $response_arr = $response->getDecodedBody();
-                Log::info($response_arr);
+
                 if (! array_key_exists('access_token', $response_arr)) {
                     Log::error('');
                 } else {
