@@ -22,6 +22,9 @@ Route::get('home', 'PagesController@getHome')->middleware('facebook');
 // User settings
 Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
 
+// Policy and Terms
+Route::get('policy', 'PagesController@getPolicy')->middleware('facebook');
+
 /**
  * Advisees Controller
  */

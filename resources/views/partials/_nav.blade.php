@@ -15,6 +15,9 @@
       <a href="{{ url('settings') }}">SETTINGS</a>
     </li>
     <li>
+      <a href="{{ url('policy') }}">POLICY</a>
+    </li>
+    <li>
       <a class="logout" onclick = "popUpWindow()">LOGOUT</a>
     </li>
   </ul>
