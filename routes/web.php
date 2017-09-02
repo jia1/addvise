@@ -55,10 +55,3 @@ Route::post('needAddvise/{id}/advice/create', 'AdvisorsController@postGiveAdvice
 // View for all advice given by the user
 Route::get('advice/me', 'AdvisorsController@getGiveAdviceShow')->middleware('facebook');
 
-/**
- * Users Controller
- */
-
-// Upsert user
-Route::get('init', 'UsersController@getUserUpsert')->middleware('facebook');
-

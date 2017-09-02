@@ -1,11 +1,7 @@
 {!! Form::open(['action' => 'AdviseesController@postTakeAdviceCreate', 'method' => 'post']) !!}
 
-{{ Form::label('message', 'Message') }}
 {{ Form::textarea('message') }}
-
-{{ Form::label('is_anonymous', 'Anonymous?') }}
-{{ Form::checkbox('is_anonymous', 'value', true) }}
-
+<br>
 <p>
     {{ Form::submit('#needAddvise') }}
 </p>

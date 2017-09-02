@@ -33,8 +33,8 @@
                 <!-- Nav -->
                     <nav id="nav">
                         <ul>
-                            <li><a href="#ask" class="active">Ask</a></li>
-                            <li><a href="#answer">Answer</a></li>
+                            <li><a href="#ask" class="active" style = "color:gray;">Ask</a></li>
+                            <li><a href="#answer" style = "color:gray;">Answer</a></li>
                         </ul>
                     </nav>
 
@@ -48,6 +48,7 @@
                                         <header class="major">
                                             <h2>Request for Advice</h2>
                                         </header>
+                                        <!--
                                         <ul class="actions">
                                             <select>
                                             <option value="" disabled selected hidden>Select Category</option>
@@ -60,7 +61,8 @@
                                             </select> <br>
                                             <input type="text" name="request"><br>
                                             <input type="submit" value="Submit" onclick = "return submitAction();">
-                                        </ul>
+                                        </ul> -->
+                                        @include('partials._requestForm')
                                     </div>
                                 </div>
                             </section>
