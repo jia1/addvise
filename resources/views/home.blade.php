@@ -129,8 +129,6 @@
                                             <input type="submit" value="Comment" onclick = "return submitAction();">
                                         </section>
                                 </div>
-                                @include('advisees.requests.index')
-
                                 </div>
 
                             </section>
