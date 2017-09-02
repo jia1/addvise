@@ -28,6 +28,7 @@
                         <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
                         <h1>Addvise</h1>
                         <p>Seek Advice, Give Advice.</p>
+                        <div class="fb-like" data-href="https://facebook.com/addvise" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
                     </header>
 
                 <!-- Nav -->
@@ -48,8 +49,6 @@
                                         <header class="major">
                                             <h2>Request for Advice</h2>
                                         </header>
-                                        <!--
-                                        <ul class="actions">
                                             <select>
                                             <option value="" disabled selected hidden>Select Category</option>
                                             <option value="volvo">Education</option>
@@ -59,9 +58,6 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-                                            <input type="text" name="request"><br>
-                                            <input type="submit" value="Submit" onclick = "return submitAction();">
-                                        </ul> -->
                                         @include('partials._requestForm')
                                     </div>
                                 </div>
