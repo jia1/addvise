@@ -3,6 +3,8 @@
 @section('title', 'Home')
 
 @section('content')
+
+
 <!--
     Stellar by HTML5 UP
     html5up.net | @ajlkn
@@ -81,15 +83,26 @@
                                             </select> <br>
 
                                  <div class="row">
+
                                  <div class="6u 12u(narrower)">
-                                        <section class="box special">
-                                            <p>01/10/2017</p>
-                                            <p>I need advice...</p>
-                                            <p>4 comments</p>
+                                        <section class="box">
+                                            <p class="date">01/10/2017</p>
+                                            <p class="request">I need advice...</p>
+                                            <p class="numofcomments">4 comments</p>
+
+                                            <ul>
+                                            <li class="comments">comment 1: you can try this way bla bla bla bla bla bla bla bla</li>
+                                            <li class="comments">comment 2: you can try this way bla bla bla</li>
+                                            </ul>
+
+
+                                            <div class="giveadvice">
                                             <input type="text" name="answer"><br>
                                             <input type="submit" value="Comment" onclick = "return submitAction();">
+                                            </div>
                                         </section>
                                 </div>
+
                                 <div class="6u 12u(narrower)">
                                         <section class="box special">
                                             <p>01/10/2017</p>
@@ -108,6 +121,17 @@
                                             <input type="submit" value="Comment" onclick = "return submitAction();">
                                         </section>
                                 </div>
+                                <div class="6u 12u(narrower)">
+                                        <section class="box special">
+                                            <p>01/10/2017</p>
+                                            <p>I need advice...</p>
+                                            <p>4 comments</p>
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">
+                                        </section>
+                                </div>
+                                @include('advisees.requests.index')
+
                                 </div>
 
                             </section>
