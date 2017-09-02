@@ -74,8 +74,8 @@ body { padding: 2em; }
 /* Shared */
 .loginBtn {
 	float:right;
-  top: 30px;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   box-sizing: border-box;
   position: relative;
   /* width: 13em;  - apply for fixed size */
