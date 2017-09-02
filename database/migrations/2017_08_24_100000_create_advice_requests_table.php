@@ -17,6 +17,7 @@ class CreateAdviceRequestsTable extends Migration
             $table->increments('id');
             $table->bigInteger('fb_post_id')->unsigned()->unique()->index();
             $table->bigInteger('fb_user_id')->unsigned()->index();
+            $table->integer('label')->unsigned()->index();
         });
         Schema::table('advice_requests', function($table) {
             $table->foreign('fb_user_id')->references('fb_user_id')->on('users');
