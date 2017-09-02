@@ -17,5 +17,10 @@ class PagesController extends Controller {
     public function getSettings() {
         return view('settings');
     }
+
+    // UPDATE: Policy Page
+    public function getPolicy() {
+        return view('policy');
+    }
 }
 
