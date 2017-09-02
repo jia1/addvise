@@ -33,8 +33,8 @@
                 <!-- Nav -->
                     <nav id="nav">
                         <ul>
-                            <li><a href="#ask" class="active">Ask</a></li>
-                            <li><a href="#answer">Answer</a></li>
+                            <li><a href="#ask" class="active" style = "color:gray;">Ask</a></li>
+                            <li><a href="#answer" style = "color:gray;">Answer</a></li>
                         </ul>
                     </nav>
 
