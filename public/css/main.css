@@ -3387,6 +3387,39 @@
 
 		#main .box {
 			border-color: #dddddd;
+			line-height: 1;
+		}
+
+		#main .box .date {
+			text-align: right;
+		}
+
+		#main .box .request {
+			text-align: center;
+		}
+
+		#main .box .numofcomments {
+			text-align: right;
+		}
+
+		li {
+			background: url('/img/addvise-icon.jpg') no-repeat left top;
+			height: 54px;
+			padding-left: 44px;
+			padding-top: 3px;
+		}
+
+		#main .box .comments {
+			text-align: left;
+		}
+
+		#main .box img {
+			width: 5%;
+			height: auto;
+		}
+
+		#main .box .giveadvice {
+			text-align: center;
 		}
 
 		#main input[type="submit"],

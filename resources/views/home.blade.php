@@ -77,7 +77,57 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-                                 <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
+                                <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
+
+                                <div class="row">
+                                <div class="6u 12u(narrower)">
+                                        <section class="box">
+                                            <p class="date">01/10/2017</p>
+                                            <p class="request">I need advice...</p>
+                                            <p class="numofcomments">4 comments</p>
+
+                                            <ul>
+                                            <li class="comments">comment 1: you can try this way bla bla bla bla bla bla bla bla</li>
+                                            <li class="comments">comment 2: you can try this way bla bla bla</li>
+                                            </ul>
+
+
+                                            <div class="giveadvice">
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">
+                                            </div>
+                                        </section>
+                                </div>
+
+                                <div class="6u 12u(narrower)">
+                                        <section class="box special">
+                                            <p>01/10/2017</p>
+                                            <p>I need advice...</p>
+                                            <p>4 comments</p>
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">
+                                        </section>
+                                </div>
+                                <div class="6u 12u(narrower)">
+                                        <section class="box special">
+                                            <p>01/10/2017</p>
+                                            <p>I need advice...</p>
+                                            <p>4 comments</p>
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">
+                                        </section>
+                                </div>
+                                <div class="6u 12u(narrower)">
+                                        <section class="box special">
+                                            <p>01/10/2017</p>
+                                            <p>I need advice...</p>
+                                            <p>4 comments</p>
+                                            <input type="text" name="answer"><br>
+                                            <input type="submit" value="Comment" onclick = "return submitAction();">
+                                        </section>
+                                </div>
+                                </div>
+
                             </section>
                     </div>
 
