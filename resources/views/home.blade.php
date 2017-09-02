@@ -3,8 +3,6 @@
 @section('title', 'Home')
 
 @section('content')
-
-
 <!--
     Stellar by HTML5 UP
     html5up.net | @ajlkn
@@ -28,8 +26,9 @@
                 <!-- Header -->
                     <header id="header" class="alt">
                         <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
-                        <h1><b><font color=#F39C12>Add</font><font color=#FFC300>vise</font></b></h1>
-                        <p>Seek Advice & Give Advice</p>
+                        <h1>Addvise</h1>
+                        <p>Seek Advice, Give Advice.</p>
+                        <div class="fb-like" data-href="https://facebook.com/addvise" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
                     </header>
 
                 <!-- Nav -->
@@ -81,10 +80,10 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
+                                <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
 
-                                 <div class="row">
-
-                                 <div class="6u 12u(narrower)">
+                                <div class="row">
+                                <div class="6u 12u(narrower)">
                                         <section class="box">
                                             <p class="date">01/10/2017</p>
                                             <p class="request">I need advice...</p>
