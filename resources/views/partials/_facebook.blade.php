@@ -9,7 +9,6 @@ crossorigin="anonymous"></script>
 
 function getUserName(callback){
     FB.api('/me', function(response) {
-        alert('Your name is ' + response.name);
         callback(response.name);
     });
 }
@@ -29,7 +28,6 @@ window.fbAsyncInit = function() {
             // Is logged in to Facebook and has authorized this app
             $('.nav-internal').show();
             getUserName((name)=>{
-                console.log(name);
                 document.getElementById('userName').innerHTML=name;
             });
             $('.logout').click(function(response) {
