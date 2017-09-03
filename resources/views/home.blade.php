@@ -58,7 +58,7 @@
                                             </select> <br>
 
                                 <div class="row">
-                                @yield('allAdvice')
+                                @yield('addvisees.requests.show')
                                 </div>
 
                             </section>
@@ -73,15 +73,6 @@
             <script src="/js/skel.min.js"></script>
             <script src="/js/util.js"></script>
             <script src="/js/main.js"></script>
-            <script>
-            function submitAction(){
-                alert('Request posted successfully!');
-                var req = document.getElementsByName("request")[0];
-                req.value = "";
-                $('select').prop('selectedIndex', 0);
-            }
-            </script>
-
 
     </body>
 </html>

@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Me')
+@section('title', 'Trending Requests')
 
 @section('content')
 <!--
@@ -18,6 +18,14 @@
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105785707-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments)};
+        gtag('js', new Date());
+
+        gtag('config', 'UA-105785707-1');
+        </script>
     </head>
     <body>
 
@@ -27,12 +35,14 @@
                 <!-- Main -->
                     <div id="main">
 
-                        <!-- Me Section -->
-                            <section id="me" class="main special">
-                                <header class="major">
-                                    <h2>My Advice</h2>
-                                </header>
-                                <select>
+                        <!-- Ask Section -->
+                            <section id="ask" class="main special">
+                                <div class="spotlight">
+                                    <div class="content">
+                                        <header class="major">
+                                            <h2>Trending Requests</h2>
+                                        </header>
+                                            <select>
                                             <option value="" disabled selected hidden>Select Category</option>
                                             <option value="volvo">Education</option>
                                             <option value="saab">Healthcare</option>
@@ -41,12 +51,8 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-
-
-                                <div class="row">
-                                @yield('givenAdvice')
+                                    </div>
                                 </div>
-
                             </section>
                     </div>
 
@@ -59,16 +65,6 @@
             <script src="/js/skel.min.js"></script>
             <script src="/js/util.js"></script>
             <script src="/js/main.js"></script>
-            <script>
-            function submitAction(){
-                alert('Request posted successfully!');
-                var req = document.getElementsByName("request")[0];
-                req.value = "";
-                $('select').prop('selectedIndex', 0);
-            }
-            </script>
-
-
     </body>
 </html>
 @stop
