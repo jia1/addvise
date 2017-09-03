@@ -12,7 +12,7 @@
       <a href="{{ url('home') }}">HOME</a>
     </li>
     <li>
-      <a href="#">TRENDING REQUESTS</a>
+      <a href="{{ url('trending') }}">TRENDING REQUESTS</a>
     </li>
     <li>
       <a href="{{ url('ask') }}">GET ADVICE</a>

@@ -13,6 +13,11 @@ class PagesController extends Controller {
         return view('home');
     }
 
+
+    public function getTrendingRequests(){
+        return view('trending');
+    }
+
     public function getAsk(){
         return view('ask');
     }
