@@ -12,10 +12,13 @@
       <a href="{{ url('home') }}">HOME</a>
     </li>
     <li>
-      <a href="{{ url('ask') }}">ASK</a>
+      <a href="#">TRENDING REQUESTS</a>
     </li>
     <li>
-      <a href="{{ url('me') }}">ME</a>
+      <a href="{{ url('ask') }}">GET ADVICE</a>
+    </li>
+    <li>
+      <a href="{{ url('me') }}">MY PROFILE </a>
     </li>
     <li>
       <a class="logout" onclick = "popUpWindow()">LOGOUT</a>

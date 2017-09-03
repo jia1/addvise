@@ -45,7 +45,7 @@
                         <!-- Show All Advice -->
                             <section id="answer" class="main special">
                                 <header class="major">
-                                    <h2>View Advice Requests</h2>
+                                    <h2>View Advices</h2>
                                 </header>
                                 <select>
                                             <option value="" disabled selected hidden>Select Category</option>
