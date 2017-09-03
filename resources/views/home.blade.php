@@ -32,42 +32,20 @@
                         <div class="fb-like" data-href="https://facebook.com/addvise" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
                     </header>
 
-                <!-- Nav -->
-                    <nav id="nav">
-                        <ul>
-                            <li><a href="#ask" class="active" style = "color:gray;">Ask</a></li>
-                            <li><a href="#answer" style = "color:gray;">Answer</a></li>
-                        </ul>
-                    </nav>
+               
+            </div>
+            
+
+         <!-- Wrapper -->
+            <div id="wrapper">
 
                 <!-- Main -->
                     <div id="main">
 
-                        <!-- Ask Section -->
-                            <section id="ask" class="main special">
-                                <div class="spotlight">
-                                    <div class="content">
-                                        <header class="major">
-                                            <h2>Request for Advice</h2>
-                                        </header>
-                                            <select>
-                                            <option value="" disabled selected hidden>Select Category</option>
-                                            <option value="volvo">Education</option>
-                                            <option value="saab">Healthcare</option>
-                                            <option value="opel">Ageing</option>
-                                            <option value="audi">Technology</option>
-                                            <option value="audi">Relationships</option>
-                                            <option value="audi">Others</option>
-                                            </select> <br>
-                                        @include('partials._requestForm')
-                                    </div>
-                                </div>
-                            </section>
-
-                        <!-- Answer Section -->
+                        <!-- Show All Advice -->
                             <section id="answer" class="main special">
                                 <header class="major">
-                                    <h2>Give Advice</h2>
+                                    <h2>View Advice Requests</h2>
                                 </header>
                                 <select>
                                             <option value="" disabled selected hidden>Select Category</option>
@@ -78,55 +56,9 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-                                <center><div class="fb-page" data-href="https://www.facebook.com/addvise/" data-tabs="timeline" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true"><blockquote cite="https://www.facebook.com/addvise/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/addvise/">Addvise</a></blockquote></div></center>
 
                                 <div class="row">
-                                <div class="6u 12u(narrower)">
-                                        <section class="box">
-                                            <p class="date">01/10/2017</p>
-                                            <p class="request">I need advice...</p>
-                                            <p class="numofcomments">4 comments</p>
-
-                                            <ul>
-                                            <li class="comments">comment 1: you can try this way bla bla bla bla bla bla bla bla</li>
-                                            <li class="comments">comment 2: you can try this way bla bla bla</li>
-                                            </ul>
-
-
-                                            <div class="giveadvice">
-                                            <input type="text" name="answer"><br>
-                                            <input type="submit" value="Comment" onclick = "return submitAction();">
-                                            </div>
-                                        </section>
-                                </div>
-
-                                <div class="6u 12u(narrower)">
-                                        <section class="box special">
-                                            <p>01/10/2017</p>
-                                            <p>I need advice...</p>
-                                            <p>4 comments</p>
-                                            <input type="text" name="answer"><br>
-                                            <input type="submit" value="Comment" onclick = "return submitAction();">
-                                        </section>
-                                </div>
-                                <div class="6u 12u(narrower)">
-                                        <section class="box special">
-                                            <p>01/10/2017</p>
-                                            <p>I need advice...</p>
-                                            <p>4 comments</p>
-                                            <input type="text" name="answer"><br>
-                                            <input type="submit" value="Comment" onclick = "return submitAction();">
-                                        </section>
-                                </div>
-                                <div class="6u 12u(narrower)">
-                                        <section class="box special">
-                                            <p>01/10/2017</p>
-                                            <p>I need advice...</p>
-                                            <p>4 comments</p>
-                                            <input type="text" name="answer"><br>
-                                            <input type="submit" value="Comment" onclick = "return submitAction();">
-                                        </section>
-                                </div>
+                                @yield('allAdvice')
                                 </div>
 
                             </section>
