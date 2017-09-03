@@ -7,6 +7,13 @@ crossorigin="anonymous"></script>
 
 <script>
 
+function getUserName(callback){
+    FB.api('/me', function(response) {
+        alert('Your name is ' + response.name);
+        callback(response.name);
+    });
+}
+
 window.fbAsyncInit = function() {
     FB.init({appId : '1592283090803235',
         autoLogAppEvents : true,
@@ -21,6 +28,10 @@ window.fbAsyncInit = function() {
         if (response.status === 'connected') {
             // Is logged in to Facebook and has authorized this app
             $('.nav-internal').show();
+            getUserName((name)=>{
+                console.log(name);
+                document.getElementById('userName').innerHTML=name;
+            });
             $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");
