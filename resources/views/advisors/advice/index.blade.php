@@ -7,11 +7,9 @@
 @extends('me')
 
 @section('givenAdvice')
-<div class="6u 12u(narrower)">
-   	<section class="box">
-        @foreach(json_decode($all_advice, true) as $message)
-        	<p>{{ $message }}</p>
-    	@endforeach
-    </section>
-</div>
+<section class="box">
+    @foreach(json_decode($all_advice, true) as $message)
+    	<p>{{ $message }}</p>
+  	@endforeach
+</section>
 @stop
