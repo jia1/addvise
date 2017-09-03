@@ -3828,3 +3828,11 @@
 			}
 
 		}
+
+/* Policy */
+	#policy {
+		position: relative;
+		width: 90%;
+		left: 5%;
+		overflow: auto;
+	}

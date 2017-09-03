@@ -1,6 +1,6 @@
 <div class="top-right links">
     <div class="nav-external" style="display: none;">
-        <button id = "login" class="loginBtn loginBtn--facebook">
+        <button id = "login" class="loginBtn loginBtn-facebook">
   			Login with Facebook
 		</button>
     </div>
@@ -13,6 +13,9 @@
     </li>
     <li>
       <a href="{{ url('settings') }}">SETTINGS</a>
+    </li>
+    <li>
+      <a href="{{ url('policy') }}">POLICY</a>
     </li>
     <li>
       <a class="logout" onclick = "popUpWindow()">LOGOUT</a>
@@ -61,8 +64,6 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.1);
   color: rgba(0, 35, 122, 0.7);
 }
 
@@ -74,8 +75,8 @@ body { padding: 2em; }
 /* Shared */
 .loginBtn {
 	float:right;
-  top: 30px;
-  right: 30px;
+  top: 10px;
+  right: 10px;
   box-sizing: border-box;
   position: relative;
   /* width: 13em;  - apply for fixed size */
@@ -107,18 +108,18 @@ body { padding: 2em; }
 
 
 /* Facebook */
-.loginBtn--facebook {
+.loginBtn-facebook {
   background-color: #4C69BA;
   background-image: linear-gradient(#4C69BA, #3B55A0);
   /*font-family: "Helvetica neue", Helvetica Neue, Helvetica, Arial, sans-serif;*/
   text-shadow: 0 -1px 0 #354C8C;
 }
-.loginBtn--facebook:before {
+.loginBtn-facebook:before {
   border-right: #364e92 1px solid;
   background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png') 6px 6px no-repeat;
 }
-.loginBtn--facebook:hover,
-.loginBtn--facebook:focus {
+.loginBtn-facebook:hover,
+.loginBtn-facebook:focus {
   background-color: #5B7BD5;
   background-image: linear-gradient(#5B7BD5, #4864B1);
 }
