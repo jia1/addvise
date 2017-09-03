@@ -11,13 +11,6 @@
             @include('partials._footer')
         </div>
 
-        <!--POPUP-->
-        <div id="nojs" class="overlay light">
-        <a class="cancel" href="#"></a>
-        <div class="nojscontent">
-            <h2>You need to turn on your JavaScript to access Addvise.</h2>
-        </div>
-
         <!-- SCRIPT TO CHECK IF JAVASCRIPT EXISTS -->
         <noscript>
             <style type="text/css">
@@ -25,7 +18,7 @@
             </style>
             <div class="noscriptmsg">
                 <!-- JAVASCRIPT BLOCKED -->
-                <meta http-equiv="refresh" content="2; url=./#nojs" />
+                <meta http-equiv="refresh" content="0; url=./nojs" />
             </div>
         </noscript>
     </body>

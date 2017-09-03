@@ -22,5 +22,10 @@ class PagesController extends Controller {
     public function getPolicy() {
         return view('policy');
     }
+
+    // UPDATE: No JS
+    public function getNoJS() {
+        return view('nojs');
+    }
 }
 

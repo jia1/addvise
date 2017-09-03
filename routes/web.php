@@ -25,6 +25,9 @@ Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
 // Policy and Terms
 Route::get('policy', 'PagesController@getPolicy')->middleware('facebook');
 
+// No JS Page
+Route::get('nojs', 'PagesController@getNoJS');
+
 /**
  * Advisees Controller
  */
