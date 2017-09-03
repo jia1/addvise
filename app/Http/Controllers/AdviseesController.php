@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\AdviceRequest;
@@ -16,7 +15,6 @@ class AdviseesController extends Controller {
     // CREATE: Create a request for advice
     public function postTakeAdviceCreate(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $message = $request->get('message');
-        $is_anonymous = $request->get('is_anonymous');
         $label = $request->get('label');
 
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
@@ -76,6 +74,7 @@ class AdviseesController extends Controller {
                         $advice_requests[$key]['created_time'] = $val['created_time'];
                         $advice_requests[$key]['message'] = $val['message'];
                         $advice_requests[$key]['id'] = $val['id'];
+                        $advice_requests[$key]['id'] = $val['id'];
                         $advice_requests[$key]['comments'] = [];
                         foreach ($val['comments']['data'] as $c_key=>$c_val) {
                             $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
@@ -89,7 +88,7 @@ class AdviseesController extends Controller {
         }
 
         Log::info($advice_requests);
-        return view('advisees.requests.index', ['advice_requests' => json_encode($advice_requests)]);
+        return view('home', ['advice_requests' => json_encode($advice_requests)]);
     }
 
     // READ: View for showing a specific request made by the user, plus its advice

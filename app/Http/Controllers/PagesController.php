@@ -9,8 +9,8 @@ class PagesController extends Controller {
     }
 
     // REDIRECT: Landing page for users after logging in
-    public function getHome() {
-        return view('home');
+    public function getGive() {
+        return view('give');
     }
 
 

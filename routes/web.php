@@ -13,7 +13,7 @@
 
 Route::get('/', 'PagesController@getWelcome');
 
-Route::get('home', 'PagesController@getHome')->middleware('facebook');
+//Route::get('home', 'PagesController@getHome')->middleware('facebook');
 
 /**
  * Pages Controller
@@ -24,6 +24,9 @@ Route::get('ask', 'PagesController@getAsk')->middleware('facebook');
 
 // My Profile
 Route::get('me', 'PagesController@getMe')->middleware('facebook');
+
+// My Profile
+Route::get('give', 'PagesController@getGive')->middleware('facebook');
 
 // Trending Requests
 Route::get('trending', 'PagesController@getTrendingRequests')->middleware('facebook');
@@ -39,11 +42,7 @@ Route::get('nojs', 'PagesController@getNoJS');
  */
 
 // #needAddvise feed
-Route::get('needAddvise', 'AdviseesController@getTakeAdviceIndex')->middleware('facebook');
-
-// View for creating a new #needAddvise
-Route::get('needAddvise/new', 'AdviseesController@getTakeAdviceNew')->middleware('facebook');
-
+Route::get('home', 'AdviseesController@getTakeAdviceIndex')->middleware('facebook');
 // Post to Facebook and store relevant identification in database
 Route::post('needAddvise/create', 'AdviseesController@postTakeAdviceCreate')->middleware('facebook');
 

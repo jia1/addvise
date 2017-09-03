@@ -4,11 +4,7 @@
 
 @section('content')
 
-@extends('show')
-
-@sections('allAdvice')
-
-@foreach(json_decode($advice_requests, true) as $post)
+@foreach(json_decode($advice_requests,true) as $post)
 <div class="6u 12u(narrower)">
     <section class="box">
         <p class="date">{{ $post['created_time'] }}</p>

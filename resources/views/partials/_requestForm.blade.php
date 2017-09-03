@@ -1,8 +1,7 @@
 {!! Form::open(['action' => 'AdviseesController@postTakeAdviceCreate', 'method' => 'post']) !!}
 
-{{ Form::textarea('message') }}
-{{Form::label('message', 'Message')}}
-<br>
+{{ Form::select('label', [1 => 'Education', 2 => 'Technology']) }} <br>
+{{ Form::textarea('message') }} <br>
 <p>
     {{ Form::submit('#needAddvise') }}
 </p>

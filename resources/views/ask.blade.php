@@ -34,15 +34,6 @@
                                         <header class="major">
                                             <h2>Request for Advice</h2>
                                         </header>
-                                            <select>
-                                            <option value="" disabled selected hidden>Select Category</option>
-                                            <option value="volvo">Education</option>
-                                            <option value="saab">Healthcare</option>
-                                            <option value="opel">Ageing</option>
-                                            <option value="audi">Technology</option>
-                                            <option value="audi">Relationships</option>
-                                            <option value="audi">Others</option>
-                                            </select> <br>
                                         @include('partials._requestForm')
                                     </div>
                                 </div>

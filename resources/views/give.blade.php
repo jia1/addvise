@@ -32,7 +32,7 @@
                                 <header class="major">
                                     <h2>Give Advice</h2>
                                 </header>
-                                @yield('giveAdvice')
+                                @include('partials._adviceForm')
                             </section>
                     </div>
 
