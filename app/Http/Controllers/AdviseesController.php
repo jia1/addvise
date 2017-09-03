@@ -17,6 +17,7 @@ class AdviseesController extends Controller {
     public function postTakeAdviceCreate(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $message = $request->get('message');
         $is_anonymous = $request->get('is_anonymous');
+        $label = $request->get('label');
 
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
         $feed_uri = env('FACEBOOK_PAGE_FEED_URI', false);
@@ -36,6 +37,7 @@ class AdviseesController extends Controller {
 
                 // Add created #needAddvise to database
                 $advice_request = new AdviceRequest;
+                $advice_requets->label = $label;
                 $advice_request->fb_post_id = explode('_', $fb_id)[1];
                 $advice_request->fb_user_id = \Request::get('fb_user_id');
                 $advice_request->save();
