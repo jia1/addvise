@@ -17,14 +17,6 @@
         <link rel="stylesheet" href="/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105785707-1"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments)};
-        gtag('js', new Date());
-
-        gtag('config', 'UA-105785707-1');
-        </script>
     </head>
     <body>
 

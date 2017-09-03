@@ -17,5 +17,17 @@ class PagesController extends Controller {
     public function getSettings() {
         return view('settings');
     }
+
+    public function getAsk(){
+        return view('ask');
+    }
+
+    public function getShow(){
+        return view('show');
+    }
+
+    public function getMe(){
+        return view('me');
+    }
 }
 
