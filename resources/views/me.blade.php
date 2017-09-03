@@ -38,7 +38,7 @@
                         <!-- Me Section -->
                             <section id="me" class="main special">
                                 <header class="major">
-                                    <h2>Given Advice</h2>
+                                    <h2>My Advice</h2>
                                 </header>
                                 <select>
                                             <option value="" disabled selected hidden>Select Category</option>

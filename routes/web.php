@@ -19,15 +19,8 @@ Route::get('home', 'PagesController@getHome')->middleware('facebook');
  * Pages Controller
  */
 
-// User settings
-Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
-
 // Request for advice
 Route::get('ask', 'PagesController@getAsk')->middleware('facebook');
-
-// Give advice
-Route::get('show', 'PagesController@getShow')->middleware('facebook');
-
 
 // Me
 Route::get('me', 'PagesController@getMe')->middleware('facebook');
