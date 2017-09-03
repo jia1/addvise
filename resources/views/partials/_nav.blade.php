@@ -15,6 +15,15 @@
       <a href="{{ url('settings') }}">SETTINGS</a>
     </li>
     <li>
+      <a href="{{ url('ask') }}">ASK</a>
+    </li>
+    <li>
+      <a href="{{ url('show') }}">SHOW</a>
+    </li>
+    <li>
+      <a href="{{ url('me') }}">ME</a>
+    </li>
+    <li>
       <a class="logout" onclick = "popUpWindow()">LOGOUT</a>
     </li>
   </ul>

@@ -6,7 +6,7 @@
 {{ Form::label('is_anonymous', 'Anonymous?') }}
 {{ Form::checkbox('is_anonymous', 'value', true) }}
 
-<p>
+<p class="commets">
     {{ Form::submit('Give Advice') }}
 </p>
 

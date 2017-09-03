@@ -4,17 +4,29 @@
 
 @section('content')
 
-<div class="content">
-    @foreach(json_decode($advice_requests, true) as $post)
-        <p>{{ $post['created_time'] }}</p>
-        <p>{{ $post['message'] }}</p>
+@extends('show')
+
+@sections('allAdvice')
+
+@foreach(json_decode($advice_requests, true) as $post)
+<div class="6u 12u(narrower)">
+    <section class="box">
+        <p class="date">{{ $post['created_time'] }}</p>
         <p>Facebook ID: {{ $post['id'] }}</p>
-        <p>{{ $post['comment_count'] }} comments</p>
+        <p class="request">{{ $post['message'] }}</p>
+        <p class="numofcomments">{{ $post['comment_count'] }} 4 comments</p>
+
+        <ul>
         @foreach($post['comments'] as $comment)
-            <p>{{ $comment }}</p>
+        <li class="comments">{{ $comment }}</li>
         @endforeach
-    @endforeach
+        </ul>
+        <div class="giveadvice">
+            <input type="submit" value="Comment" onclick = "return submitAction();">
+        </div>
+    </section>
 </div>
+@endforeach
 
 @stop
 
