@@ -4,13 +4,15 @@
 
 @section('content')
 
-<p>You are giving an advice to:</p>
+@extends('give')
 
-<p>
-    {{ $advice_request_message }}
-</p>
+@section('giveAdvice')
 
-@include('partials._adviceForm')
+<section class="box">
+	<p class="request">You are giving an advice to:</p>
+	<p class="request">{{ $advice_request_message }}</p>
+	@include('partials._adviceForm')
+</section>
 
 @stop
 

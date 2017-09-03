@@ -19,8 +19,14 @@ Route::get('home', 'PagesController@getHome')->middleware('facebook');
  * Pages Controller
  */
 
-// User settings
-Route::get('settings', 'PagesController@getSettings')->middleware('facebook');
+// Get advice
+Route::get('ask', 'PagesController@getAsk')->middleware('facebook');
+
+// My Profile
+Route::get('me', 'PagesController@getMe')->middleware('facebook');
+
+// Trending Requests
+Route::get('trending', 'PagesController@getTrendingRequests')->middleware('facebook');
 
 // Policy and Terms
 Route::get('policy', 'PagesController@getPolicy')->middleware('facebook');

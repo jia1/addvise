@@ -13,9 +13,17 @@ class PagesController extends Controller {
         return view('home');
     }
 
-    // UPDATE: Settings page for users
-    public function getSettings() {
-        return view('settings');
+
+    public function getTrendingRequests(){
+        return view('trending');
+    }
+
+    public function getAsk(){
+        return view('ask');
+    }
+
+    public function getMe(){
+        return view('me');
     }
 
     // UPDATE: Policy Page

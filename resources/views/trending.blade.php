@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Home')
+@section('title', 'Trending Requests')
 
 @section('content')
 <!--
@@ -18,36 +18,31 @@
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
         <!-- Global Site Tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-105785707-1"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments)};
+        gtag('js', new Date());
+
+        gtag('config', 'UA-105785707-1');
+        </script>
     </head>
     <body>
 
         <!-- Wrapper -->
             <div id="wrapper">
 
-                <!-- Header -->
-                    <header id="header" class="alt">
-                        <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
-                        <h1>Addvise</h1>
-                        <p>Seek Advice, Give Advice.</p>
-                        <div class="fb-like" data-href="https://facebook.com/addvise" data-layout="button_count" data-action="like" data-size="large" data-show-faces="false" data-share="true"></div>
-                    </header>
-
-               
-            </div>
-            
-
-         <!-- Wrapper -->
-            <div id="wrapper">
-
                 <!-- Main -->
                     <div id="main">
 
-                        <!-- Show All Advice -->
-                            <section id="answer" class="main special">
-                                <header class="major">
-                                    <h2>View Advices</h2>
-                                </header>
-                                <select>
+                        <!-- Ask Section -->
+                            <section id="ask" class="main special">
+                                <div class="spotlight">
+                                    <div class="content">
+                                        <header class="major">
+                                            <h2>Trending Requests</h2>
+                                        </header>
+                                            <select>
                                             <option value="" disabled selected hidden>Select Category</option>
                                             <option value="volvo">Education</option>
                                             <option value="saab">Healthcare</option>
@@ -56,11 +51,8 @@
                                             <option value="audi">Relationships</option>
                                             <option value="audi">Others</option>
                                             </select> <br>
-
-                                <div class="row">
-                                @yield('addvisees.requests.show')
+                                    </div>
                                 </div>
-
                             </section>
                     </div>
 
@@ -73,7 +65,6 @@
             <script src="/js/skel.min.js"></script>
             <script src="/js/util.js"></script>
             <script src="/js/main.js"></script>
-
     </body>
 </html>
 @stop

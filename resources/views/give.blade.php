@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Welcome')
+@section('title', 'Give')
 
 @section('content')
 <!--
@@ -17,17 +17,26 @@
         <link rel="stylesheet" href="/css/main.css" />
         <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
         <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!-- Global Site Tag (gtag.js) - Google Analytics -->
     </head>
     <body>
 
+        <!-- Wrapper -->
+            <div id="wrapper">
 
-                <!-- Header -->
-                    <header id="header" class="alt">
-                        <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
-                        <h1>Addvise</h1>
-                        <p>Seek Advice, Give Advice.</p>
-                    </header>
+                <!-- Main -->
+                    <div id="main">
 
+                        <!-- Answer Section -->
+                            <section id="answer" class="main special">
+                                <header class="major">
+                                    <h2>Give Advice</h2>
+                                </header>
+                                @yield('giveAdvice')
+                            </section>
+                    </div>
+
+            </div>
 
         <!-- Scripts -->
             <script src="/js/jquery.min.js"></script>
@@ -36,6 +45,15 @@
             <script src="/js/skel.min.js"></script>
             <script src="/js/util.js"></script>
             <script src="/js/main.js"></script>
+            <script>
+            function submitAction(){
+                alert('Request posted successfully!');
+                var req = document.getElementsByName("request")[0];
+                req.value = "";
+                $('select').prop('selectedIndex', 0);
+            }
+            </script>
+
 
     </body>
 </html>

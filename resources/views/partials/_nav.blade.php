@@ -15,7 +15,13 @@
       <a href="{{ url('home') }}">HOME</a>
     </li>
     <li>
-      <a href="{{ url('settings') }}">SETTINGS</a>
+      <a href="{{ url('trending') }}">TRENDING REQUESTS</a>
+    </li>
+    <li>
+      <a href="{{ url('ask') }}">GET ADVICE</a>
+    </li>
+    <li>
+      <a href="{{ url('me') }}">MY PROFILE </a>
     </li>
     <li>
       <a href="{{ url('policy') }}">POLICY</a>
