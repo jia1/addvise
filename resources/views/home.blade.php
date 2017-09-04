@@ -47,10 +47,8 @@
                                 <header class="major">
                                     <h2>View Advices</h2>
                                 </header>
-                                <div class="row">
                                     @foreach(json_decode($advice_requests,true) as $post)
-                                    <div class="6u 12u(narrower)">
-                                     <section class="box">
+                                    <section class="box">
                                         <p class="date">{{ $post['created_time'] }}</p>
                                         <p class="request">{{ $post['message'] }}</p>
                                         <p class="numofcomments">{{ $post['comment_count'] }} comments</p>
@@ -60,11 +58,8 @@
                                         @endforeach
                                          </ul>
                                         <input type="button" onclick="window.location='{ route('give') }}'"; value="Give Advice" /> 
-                                        </section>
-                                        </div>
-                                        @endforeach 
-                                </div>
-
+                                    </section>   
+                                    @endforeach
                             </section>
                     </div>
 
