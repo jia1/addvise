@@ -91,34 +91,32 @@ class AdviseesController extends Controller {
 
                 $data = $response_arr['data'];
                 foreach ($data as $key=>$val) {
-                    if (array_key_exists('message', $data[$key])) {
-                        $advice_requests[$key] = [];
-                        $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
-                        $advice_requests[$key]['message'] = $val['message'];
-                        $advice_requests[$key]['fb_post_id'] = $val['id'];
-                        $advice_requests[$key]['comments'] = [];
-                        foreach ($val['comments']['data'] as $c_key=>$c_val) {
-                            $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
+                    $advice_requests[$key] = [];
+                    $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
+                    $advice_requests[$key]['message'] = $val['message'];
+                    $advice_requests[$key]['fb_post_id'] = $val['id'];
+                    $advice_requests[$key]['comments'] = [];
+                    foreach ($val['comments']['data'] as $c_key=>$c_val) {
+                        $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
+                    }
+                    $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
+
+                    $advice_request_from_db = AdviceRequest::select('id', 'fb_user_id', 'is_anonymous', 'label')
+                        ->where('fb_post_id', explode('_', $val['id'])[1])->first();
+
+                    $advice_requests[$key]['advice_request_id'] = null;
+                    $advice_requests[$key]['fb_user_id'] = null;
+                    $advice_requests[$key]['label'] = 0;
+
+                    if (! $advice_request_from_db) {
+                        ;
+                    } else {
+
+                        if (! $advice_request_from_db->is_anonymous) {
+                            $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->fb_user_id;
                         }
-                        $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
-
-                        $advice_request_from_db = AdviceRequest::select('id', 'fb_user_id', 'is_anonymous', 'label')
-                            ->where('fb_post_id', explode('_', $val['id'])[1])->first();
-
-                        $advice_requests[$key]['advice_request_id'] = null;
-                        $advice_requests[$key]['fb_user_id'] = null;
-                        $advice_requests[$key]['label'] = 0;
-
-                        if (! $advice_request_from_db) {
-                            ;
-                        } else {
-
-                            if (! $advice_request_from_db->is_anonymous) {
-                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->fb_user_id;
-                            }
-                            $advice_requests[$key]['label'] = $advice_request_from_db->label;
-                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->id;
-                        }
+                        $advice_requests[$key]['label'] = $advice_request_from_db->label;
+                        $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->id;
                     }
                 }
 
@@ -166,17 +164,15 @@ class AdviseesController extends Controller {
                     $data = $response->getDecodedBody();
 
                     foreach ($data as $key=>$val) {
-                        if (array_key_exists('message', $data[$key])) {
-                            $advice_requests[$key] = [];
-                            $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
-                            $advice_requests[$key]['message'] = $val['message'];
-                            $advice_requests[$key]['fb_post_id'] = $val['id'];
-                            $advice_requests[$key]['comments'] = [];
-                            foreach ($val['comments']['data'] as $c_key=>$c_val) {
-                                $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
-                            }
-                            $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
+                        $advice_requests[$key] = [];
+                        $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
+                        $advice_requests[$key]['message'] = $val['message'];
+                        $advice_requests[$key]['fb_post_id'] = $val['id'];
+                        $advice_requests[$key]['comments'] = [];
+                        foreach ($val['comments']['data'] as $c_key=>$c_val) {
+                            $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
                         }
+                        $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
                     }
 
                     $i = 0;
