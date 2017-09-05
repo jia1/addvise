@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AdviceRequest;
 use App\AdviceGiven;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Log;
 use SammyK;
@@ -20,7 +21,7 @@ class AdvisorsController extends Controller {
             ;
         } else {
             try {
-                $response = $fb->get('/' . $fb_page_id . '_' . $fb_post_id, $access_token);
+                $response = $fb->get($fb_page_id . '_' . $fb_post_id, $access_token);
                 $response_array = $response->getDecodedBody();
 
                 if (! array_key_exists('message', $response_array)) {
@@ -52,7 +53,7 @@ class AdvisorsController extends Controller {
             ;
         } else {
             try {
-                $response = $fb->post('/' . $fb_page_id . '_' . $fb_post_id . '/comments', ['message' => $message], $access_token);
+                $response = $fb->post($fb_page_id . '_' . $fb_post_id . '/comments', ['message' => $message], $access_token);
                 $response_array = $response->getDecodedBody();
 
                 if (! array_key_exists('id', $response_array)) {
@@ -85,7 +86,7 @@ class AdvisorsController extends Controller {
         $advice_requests = [];
         $fb_post_rows = AdviceGiven::select('fb_post_id')
             ->where('fb_user_id', \Request::get('fb_user_id'))
-            ->take(10);
+            ->take(10)->get();
 
         $fb_page_id = env('FACEBOOK_PAGE_ID', false);
 
@@ -122,12 +123,24 @@ class AdvisorsController extends Controller {
                             }
                             $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
                         }
+
+                        $advice_request_from_db = AdviceRequest::select(['id', 'fb_user_id', 'is_anonymous', 'label'])
+                            ->where('fb_post_id', explode('_', $val['id'])[1])->first();
+
+                        $advice_requests[$key]['advice_request_id'] = null;
+                        $advice_requests[$key]['fb_user_id'] = null;
+                        $advice_requests[$key]['label'] = 0;
+                        if (! $advice_request_from_db) {
+                            ;
+                        } else {
+                            if (! $advice_request_from_db->value('is_anonymous')) {
+                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->value('fb_user_id');
+                            }
+                            $advice_requests[$key]['label'] = $advice_request_from_db->value('label');
+                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->value('id');
+                        }
                     }
 
-                    $i = 0;
-                    foreach ($advice_requests as $key=>$val) {
-                        $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
-                    }
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                     dd($e->getMessage());
                 }

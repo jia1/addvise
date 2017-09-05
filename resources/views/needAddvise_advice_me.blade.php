@@ -16,7 +16,7 @@
     <!-- Show All Advice -->
     <section id="answer" class="main special">
     <header class="major">
-        <h2>Requests for Advice</h2>
+        <h2>Advice I Gave</h2>
     </header>
 
     @foreach(json_decode($advice_requests, true) as $post)

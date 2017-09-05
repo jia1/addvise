@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Feed')
+@section('title', 'Latest #needAddvise')
 
 @section('stylesheets')
 <link rel="stylesheet" href="/css/author.css">
@@ -16,7 +16,7 @@
     <!-- Show All Advice -->
     <section id="answer" class="main special">
     <header class="major">
-        <h2>Advice Wanted Here</h2>
+        <h2>Latest #needAddvise</h2>
     </header>
 
     @foreach(json_decode($advice_requests, true) as $post)

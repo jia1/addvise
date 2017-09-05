@@ -25,7 +25,7 @@ class AdviseesController extends Controller {
 
         } else {
             try {
-                $response = $fb->post($fb_page_id, ['message' => $message], $access_token);
+                $response = $fb->post($fb_page_id . '/feed', ['message' => $message], $access_token);
                 $response_array = $response->getDecodedBody();
 
                 if (! array_key_exists('id', $response_array)) {
@@ -64,7 +64,7 @@ class AdviseesController extends Controller {
 
         } else {
             try {
-                $response = $fb->get('/' . $fb_page_id . '/feed?fields=created_time,message,id,comments.summary(true)&limit=10',
+                $response = $fb->get($fb_page_id . '/feed?fields=created_time,message,id,comments.summary(true)&limit=10',
                     $access_token);
                 $response_array = $response->getDecodedBody();
 

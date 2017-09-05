@@ -8,14 +8,8 @@ class PagesController extends Controller {
         return view('welcome');
     }
 
-    // REDIRECT: Landing page for users after logging in
-    public function getGive() {
-        return view('give');
-    }
-
-
-    public function getTrendingRequests(){
-        return view('trending');
+    public function getHome() {
+        return view('home');
     }
 
     public function getAsk(){
@@ -26,12 +20,12 @@ class PagesController extends Controller {
         return view('me');
     }
 
-    // UPDATE: Policy Page
+    // READ: Addvise Policies
     public function getPolicy() {
         return view('policy');
     }
 
-    // UPDATE: No JS
+    // READ: No JS
     public function getNoJS() {
         return view('nojs');
     }
