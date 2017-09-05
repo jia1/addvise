@@ -46,6 +46,9 @@
         @foreach($post['comments'] as $comment)
             <p class="comments"><b> {{ $comment }}</p>
         @endforeach
+        <ul>
+            <li class="give-advice"><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}" target="_blank">View on Facebook</a></li>
+        </ul>
         </div>
     </section>
     @endforeach
