@@ -5,12 +5,24 @@ use Carbon\Carbon;
 use App\AdviceRequest;
 use Illuminate\Http\Request;
 use Log;
+use Redis;
 use SammyK;
 
 class AdviseesController extends Controller {
 
     // CREATE: Create a request for advice
     public function postTakeAdviceCreate(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+        $ttl = Redis::ttl(\Request::get('fb_user_id'));
+
+        if ($ttl > 0) {
+            if ($ttl > 60) {
+                $request->session()->flash('status', 'Please wait for another ' . intdiv($ttl, 60) . ' minutes before posting again.');
+            } else {
+                $request->session()->flash('status', 'Please wait for another ' . intdiv . ' seconds before posting again.');
+            }
+            return redirect('/');
+        }
+
         // Form values
         $is_anonymous = $request->get('is_anonymous');
         $label = $request->get('label');
@@ -27,8 +39,6 @@ class AdviseesController extends Controller {
             try {
                 $response = $fb->post($fb_page_id . '/feed', ['message' => $message], $access_token);
                 $response_arr = $response->getDecodedBody();
-
-                Log::info($response_arr);
 
                 if (! array_key_exists('id', $response_arr)) {
                     // Handle corner case: E.g. Facebook server is down
@@ -52,6 +62,7 @@ class AdviseesController extends Controller {
             }
         }
 
+        Redis::setex(\Request::get('fb_user_id'), 300, 1);
         $request->session()->flash('status', 'Your request is up! How about giving an advice to someone now?');
         return redirect()->action('PagesController@getWelcome');
     }
