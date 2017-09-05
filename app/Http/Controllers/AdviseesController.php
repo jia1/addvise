@@ -58,7 +58,7 @@ class AdviseesController extends Controller {
                 dd($e->getMessage());
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
                 $request->session()->flash('status', $e->getMessage());
-                return back();
+                return redirect('/');
             }
         }
 
@@ -112,6 +112,7 @@ class AdviseesController extends Controller {
                         if (! $advice_request_from_db) {
                             ;
                         } else {
+
                             if (! $advice_request_from_db->value('is_anonymous')) {
                                 $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->value('fb_user_id');
                             }
