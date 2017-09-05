@@ -42,10 +42,7 @@
                                             <option value="audi">Others</option>
                                             </select> <br>
 
-
-                                <div class="row">
                                 @yield('givenAdvice')
-                                </div>
 
                             </section>
                     </div>

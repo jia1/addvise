@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\AdviceRequest;
 use Illuminate\Http\Request;
 use Log;
@@ -71,7 +72,7 @@ class AdviseesController extends Controller {
                 foreach ($data as $key=>$val) {
                     if (array_key_exists('message', $data[$key])) {
                         $advice_requests[$key] = [];
-                        $advice_requests[$key]['created_time'] = $val['created_time'];
+                        $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
                         $advice_requests[$key]['message'] = $val['message'];
                         $advice_requests[$key]['id'] = $val['id'];
                         $advice_requests[$key]['id'] = $val['id'];
