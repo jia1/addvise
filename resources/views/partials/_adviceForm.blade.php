@@ -9,13 +9,17 @@ input[type="checkbox"] {
 
 {!! Form::open(['action' => ['AdvisorsController@postGiveAdviceCreate', $advice_request_id], 'method' => 'post']) !!}
 
+<p>
 {{ Form::label('message', 'Your Advice') }}
 {{ Form::textarea('message') }}
+</p>
 
+<p>
 {{ Form::label('is_anonymous', 'Stay anonymous?') }}
 {{ Form::checkbox('is_anonymous', true, true) }}
+</p>
 
-<p class="commets">
+<p class="comments">
     {{ Form::submit('Give Advice') }}
 </p>
 

@@ -12,12 +12,36 @@
 <p>
 {{ Form::label('label', 'Type of advice needed') }}
 {{ Form::select('label', [
+
     0 => 'Uncategorized',
-    1 => 'Academics',
-    2 => 'Health',
-    3 => 'Lifestyle',
-    4 => 'Relationships',
-]) }}
+
+    'Academics' => [
+        1 => 'Academics',
+        2 => 'Internships',
+        3 => 'Overseas opportunities',
+    ],
+    'Career' => [
+        4 => 'Certification',
+        5 => 'Companies',
+        6 => 'Interviews',
+        7 => 'Office politics',
+        8 => 'Work-life balance',
+    ],
+    'Personal' => [
+        9 => 'Finances',
+        10 => 'Health',
+        11 => 'Lifestyle',
+        12 => 'Personality',
+    ],
+    'Social' => [
+        13 => 'Being different from others',
+        14 => 'Bullying',
+        15 => 'Family',
+        16 => 'Friendships',
+        17 => 'Relationships',
+    ],
+
+    ]) }}
 </p>
 
 <p>
