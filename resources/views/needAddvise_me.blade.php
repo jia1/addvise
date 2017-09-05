@@ -32,7 +32,7 @@
             </div>
             <div class="blog-tags">
                 <ul>
-                    <li>{{ $post['label'] }}</li>
+                    <li class="label">{{ $post['label'] }}</li>
                     <li>{{ $post['created_time'] }}</li>
                     <li>{{ $post['comment_count'] }} advice</li>
                 </ul>
@@ -52,5 +52,7 @@
     
 </div>
 </div>
+
+<script src="/js/translate.js"></script>
 @stop
 
