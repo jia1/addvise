@@ -17,9 +17,6 @@
                 <div id="userName"></div>
             </h2>
         </header>
-
-    @yield('givenAdvice')
-
     </section>
 
 </div>
