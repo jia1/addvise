@@ -28,6 +28,8 @@ class AdviseesController extends Controller {
                 $response = $fb->post($fb_page_id . '/feed', ['message' => $message], $access_token);
                 $response_array = $response->getDecodedBody();
 
+                Log::info($response_array);
+
                 if (! array_key_exists('id', $response_array)) {
                     // Handle corner case: E.g. Facebook server is down
                 }
@@ -47,6 +49,7 @@ class AdviseesController extends Controller {
             }
         }
 
+        $request->session()->flash('status', 'Your request is up! How about giving an advice to someone now?');
         return redirect()->action('PagesController@getWelcome');
     }
 

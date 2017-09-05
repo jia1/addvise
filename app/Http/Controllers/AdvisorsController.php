@@ -73,6 +73,7 @@ class AdvisorsController extends Controller {
             }
         }
 
+        $request->session()->flash('status', 'Your advice is up! One advice a day keeps the doctor away!');
         return redirect()->action('PagesController@getWelcome');
     }
 

@@ -9,6 +9,10 @@
     <body>
         @include('partials._facebook')
 
+        @if (Session::has('status'))
+            {{ Session::get('status') }}
+        @endif
+
         <noscript>
             <style type="text/css">
                 .pagecontainer {
