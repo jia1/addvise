@@ -17,7 +17,13 @@
             <a href="{{ url('ask') }}">ASK FOR ADVICE</a>
         </li>
         <li>
-            <a href="{{ url('trending') }}">GIVE AN ADVICE</a>
+            <a href="{{ url('needAddvise') }}">GIVE AN ADVICE</a>
+        </li>
+        <li>
+            <a href="{{ url('needAddvise/me') }}">MY REQUESTS</a>
+        </li>
+        <li>
+            <a href="{{ url('needAddvise/advice/me') }}">ADVICE I GAVE</a>
         </li>
         <li>
             <a href="{{ url('policy') }}">ADDVISE POLICY</a>

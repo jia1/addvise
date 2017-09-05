@@ -27,7 +27,7 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <span class="logo"><img src="img/addvise-icon.png" alt="" /></span>
+            <span class="logo"><img src="{{ url('img/addvise-icon.png') }}" alt="Addvise Logo"></span>
                 <h1>Addvise</h1>
                 <p>Seek Advice, Give Advice.</p>
             <div class="fb-like" data-href="https://facebook.com/addvise"

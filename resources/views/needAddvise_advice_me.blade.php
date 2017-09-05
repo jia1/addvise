@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Feed')
+@section('title', 'Advice I Gave')
 
 @section('stylesheets')
 <link rel="stylesheet" href="/css/author.css">
@@ -16,14 +16,18 @@
     <!-- Show All Advice -->
     <section id="answer" class="main special">
     <header class="major">
-        <h2>Advice Wanted Here</h2>
+        <h2>Requests for Advice</h2>
     </header>
 
     @foreach(json_decode($advice_requests, true) as $post)
     <section class="box">
         <div class="blog-header">
             <div class="blog-author--no-cover">
-                <h3>Addvise</h3>
+                @if (! $post['fb_user_id'])
+                    <h3>Addvise</h3>
+                @else
+                    <h3>{{ $post['fb_user_id'] }}</h3>
+                @endif
             </div>
         </div>
         <div class="blog-body">
@@ -32,7 +36,7 @@
             </div>
             <div class="blog-tags">
                 <ul>
-                    <li>category</li>
+                    <li>{{ $post['label'] }}</li>
                     <li>{{ $post['created_time'] }}</li>
                     <li>{{ $post['comment_count'] }} advice</li>
                 </ul>
@@ -42,9 +46,6 @@
         @foreach($post['comments'] as $comment)
             <p class="comments"><b> {{ $comment }}</p>
         @endforeach
-        <ul>
-            <li class="give-advice"><a href="{{ url('give') }}">Give Advice</a></li>
-        </ul>
         </div>
     </section>
     @endforeach
