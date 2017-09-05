@@ -47,11 +47,12 @@
             <p class="comments"><b> {{ $comment }}</p>
         @endforeach
         <ul>
+            <li class="give-advice"><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}" target="_blank">View on Facebook</a></li>
+
             @if (! $post['advice_request_id'])
             @else
                 <li class="give-advice"><a href="{{ url('needAddvise/' . $post['advice_request_id'] . '/advice/new') }}">Give Advice</a></li>
             @endif
-            <li><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}">View on Facebook</a></li>
         </ul>
         </div>
     </section>
