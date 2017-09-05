@@ -3926,7 +3926,6 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   list-style: none;
-  padding-left: 0;
 }
 
 .blog-tags li + li {
@@ -3945,7 +3944,7 @@
   text-align: center;
   text-transform: uppercase;
   white-space: nowrap;
-  width: 5rem;
+  width: 7rem;
 }
 
 .blog-footer {
@@ -3974,6 +3973,7 @@
 }
 
 .blog-footer li {
+	margin-top: .5rem;
   color: #999999;
   font-size: .75rem;
   height: 1.5rem;

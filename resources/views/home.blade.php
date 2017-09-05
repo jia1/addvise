@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="blog-footer">
                                             @foreach($post['comments'] as $comment)
-                                            <p class="comments"><b>username:</b> {{ $comment }}</p>
+                                            <p class="comments"><b> {{ $comment }}</p>
                                             @endforeach
                                             <ul><li class="give-advice"><a href="{{ url('give') }}">Give Advice</a></li></ul>
                                         </div>
