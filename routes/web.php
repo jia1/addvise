@@ -51,9 +51,6 @@ Route::get('needAddvise/me', 'AdviseesController@getTakeAdviceShowByUser')->midd
  * Advisors Controller
  */
 
-// All advice given (with or without the corresponding #needAddvise?)
-Route::get('needAddvise/advice', 'AdvisorsController@getGiveAdviceIndex')->middleware('facebook');
-
 // View for creating a new advice for an existing #needAddvise
 Route::get('needAddvise/{id}/advice/new', 'AdvisorsController@getGiveAdviceNew')->middleware('facebook');
 
