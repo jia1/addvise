@@ -49,20 +49,47 @@
                                 </header>
                                     @foreach(json_decode($advice_requests,true) as $post)
                                     <section class="box">
-                                        <p class="date">{{ $post['created_time'] }}</p>
-                                        <p class="request">{{ $post['message'] }}</p>
-                                        <p class="numofcomments">{{ $post['comment_count'] }} comments</p>
-                                        <ul>
-                                        @foreach($post['comments'] as $comment)
-                                        <li class="comments">{{ $comment }}</li>
-                                        @endforeach
-                                         </ul>
-                                        <input type="button" onclick="window.location='{ route('give') }}'"; value="Give Advice" /> 
-                                    </section>   
+                                        <div class="blog-header">
+                                            <div class="blog-author--no-cover">
+                                            <style>
+                                                .blog-author--no-cover h3::before {
+                                                background: url("img/addvise-icon.png");
+                                                background-size: cover;
+                                                border-radius: 50%;
+                                                content: " ";
+                                                display: inline-block;
+                                                height: 32px;
+                                                margin-right: .5rem;
+                                                position: relative;
+                                                top: 8px;
+                                                width: 32px;
+                                                }
+                                            </style>
+                                                <h3>User Name</h3>
+                                            </div>
+                                        </div>
+                                        <div class="blog-body">
+                                            <div class="blog-summary">
+                                                <p>{{ $post['message'] }}</p>
+                                            </div>
+                                            <div class="blog-tags">
+                                                <ul>
+                                                    <li>category</li>
+                                                    <li>{{ $post['created_time'] }}</li>
+                                                    <li>{{ $post['comment_count'] }} advice</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="blog-footer">
+                                            @foreach($post['comments'] as $comment)
+                                            <p class="comments"><b>username:</b> {{ $comment }}</p>
+                                            @endforeach
+                                            <ul><li class="give-advice"><a href="{{ url('give') }}">Give Advice</a></li></ul>
+                                        </div>
+                                    </section>
                                     @endforeach
                             </section>
                     </div>
-
             </div>
 
         <!-- Scripts -->
