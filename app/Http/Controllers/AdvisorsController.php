@@ -12,7 +12,7 @@ use SammyK;
 class AdvisorsController extends Controller {
     // CREATE: View for creating an advice in response to a request for advice
     public function getGiveAdviceNew($id, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
-        $fb_post_id = AdviceRequest::where('id', $id)->first()->value('fb_post_id');
+        $fb_post_id = AdviceRequest::where('id', $id)->first()->fb_post_id;
 
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
         $fb_page_id = env('FACEBOOK_PAGE_ID', false);
@@ -44,7 +44,7 @@ class AdvisorsController extends Controller {
     // CREATE: Create an advice
     public function postGiveAdviceCreate($id, Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $advice_request_id = $id;
-        $fb_post_id = AdviceRequest::where('id', $advice_request_id)->first()->value('fb_post_id');
+        $fb_post_id = AdviceRequest::where('id', $advice_request_id)->first()->fb_post_id;
 
         $message = $request->get('message');
         $is_anonymous = $request->get('is_anonymous');
@@ -133,7 +133,7 @@ class AdvisorsController extends Controller {
                             $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
                         }
 
-                        $advice_request_from_db = AdviceRequest::select(['id', 'fb_user_id', 'is_anonymous', 'label'])
+                        $advice_request_from_db = AdviceRequest::select('id', 'fb_user_id', 'is_anonymous', 'label')
                             ->where('fb_post_id', explode('_', $val['id'])[1])->first();
 
                         $advice_requests[$key]['advice_request_id'] = null;
@@ -142,11 +142,11 @@ class AdvisorsController extends Controller {
                         if (! $advice_request_from_db) {
                             ;
                         } else {
-                            if (! $advice_request_from_db->value('is_anonymous')) {
-                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->value('fb_user_id');
+                            if (! $advice_request_from_db->is_anonymous) {
+                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->fb_user_id;
                             }
-                            $advice_requests[$key]['label'] = $advice_request_from_db->value('label');
-                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->value('id');
+                            $advice_requests[$key]['label'] = $advice_request_from_db->label;
+                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->id;
                         }
                     }
 

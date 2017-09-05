@@ -102,7 +102,7 @@ class AdviseesController extends Controller {
                         }
                         $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
 
-                        $advice_request_from_db = AdviceRequest::select(['id', 'fb_user_id', 'is_anonymous', 'label'])
+                        $advice_request_from_db = AdviceRequest::select('id', 'fb_user_id', 'is_anonymous', 'label')
                             ->where('fb_post_id', explode('_', $val['id'])[1])->first();
 
                         $advice_requests[$key]['advice_request_id'] = null;
@@ -113,11 +113,11 @@ class AdviseesController extends Controller {
                             ;
                         } else {
 
-                            if (! $advice_request_from_db->value('is_anonymous')) {
-                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->value('fb_user_id');
+                            if (! $advice_request_from_db->is_anonymous) {
+                                $advice_requests[$key]['fb_user_id'] = $advice_request_from_db->fb_user_id;
                             }
-                            $advice_requests[$key]['label'] = $advice_request_from_db->value('label');
-                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->value('id');
+                            $advice_requests[$key]['label'] = $advice_request_from_db->label;
+                            $advice_requests[$key]['advice_request_id'] = $advice_request_from_db->id;
                         }
                     }
                 }
@@ -139,7 +139,7 @@ class AdviseesController extends Controller {
         $advice_requests = [];
 
         // Fetch fb_post_id from database
-        $fb_post_rows = AdviceRequest::select(['fb_post_id', 'label'])
+        $fb_post_rows = AdviceRequest::select('fb_post_id', 'label')
             ->where('fb_user_id', \Request::get('fb_user_id'))
             ->orderBy('id', 'desc')
             ->take(10)->get();
