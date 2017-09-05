@@ -8,6 +8,7 @@ class AdviceRequest extends Model
 {
     protected $fillable = [
         'label',
+        'is_anonymous',
         'fb_post_id',
         'fb_user_id',
     ];

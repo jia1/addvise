@@ -1,0 +1,13 @@
+.blog-author--no-cover h3::before {
+    background: url("../img/addvise-icon.png");
+    background-size: cover;
+    border-radius: 50%;
+    content: " ";
+    display: inline-block;
+    height: 32px;
+    margin-right: .5rem;
+    position: relative;
+    top: 8px;
+    width: 32px;
+}
+

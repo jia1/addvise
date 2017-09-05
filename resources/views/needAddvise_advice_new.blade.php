@@ -8,7 +8,7 @@
     function submitAction() {
         alert('Your request is up! Sit tight and wait for Addvise!');
     }
-</script>
+    </script>
 @stop
 
 @section('content')
@@ -23,9 +23,14 @@
         <div class="spotlight">
             <div class="content">
                 <header class="major">
-                    <h2>Ask for Advice</h2>
+                    <h2>Give an Advice</h2>
                 </header>
-                @include('partials._requestForm')
+
+                <section class="box">
+                	<p class="request">You are giving an advice to:</p>
+                	<p class="request">{{ $advice_request_message }}</p>
+                    @include('partials._adviceForm')
+                </section>
             </div>
         </div>
     </section>

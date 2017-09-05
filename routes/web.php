@@ -13,49 +13,43 @@
 
 Route::get('/', 'PagesController@getWelcome');
 
-//Route::get('home', 'PagesController@getHome')->middleware('facebook');
-
 /**
  * Pages Controller
  */
 
-// Get advice
+// Home page
+Route::get('home', 'PagesController@getHome')->middleware('facebook');
+
+// Ask for advice
 Route::get('ask', 'PagesController@getAsk')->middleware('facebook');
-
-// My Profile
-Route::get('me', 'PagesController@getMe')->middleware('facebook');
-
-// My Profile
-Route::get('give', 'PagesController@getGive')->middleware('facebook');
-
-// Trending Requests
-Route::get('trending', 'PagesController@getTrendingRequests')->middleware('facebook');
 
 // Policy and Terms
 Route::get('policy', 'PagesController@getPolicy')->middleware('facebook');
 
+// My Profile
+Route::get('me', 'PagesController@getMe')->middleware('facebook');
+
 // No JS Page
 Route::get('nojs', 'PagesController@getNoJS');
+
 
 /**
  * Advisees Controller
  */
 
 // #needAddvise feed
-Route::get('home', 'AdviseesController@getTakeAdviceIndex')->middleware('facebook');
+Route::get('needAddvise', 'AdviseesController@getTakeAdviceIndex')->middleware('facebook');
+
 // Post to Facebook and store relevant identification in database
 Route::post('needAddvise/create', 'AdviseesController@postTakeAdviceCreate')->middleware('facebook');
 
 // View for all #needAddvise created by the user
-Route::get('needAddvise/me', 'AdviseesController@getTakeAdviceShow')->middleware('facebook');
+Route::get('needAddvise/me', 'AdviseesController@getTakeAdviceShowByUser')->middleware('facebook');
 
 
 /**
  * Advisors Controller
  */
-
-// All advice given (with or without the corresponding #needAddvise?)
-Route::get('advice', 'AdvisorsController@getGiveAdviceIndex')->middleware('facebook');
 
 // View for creating a new advice for an existing #needAddvise
 Route::get('needAddvise/{id}/advice/new', 'AdvisorsController@getGiveAdviceNew')->middleware('facebook');
@@ -64,5 +58,5 @@ Route::get('needAddvise/{id}/advice/new', 'AdvisorsController@getGiveAdviceNew')
 Route::post('needAddvise/{id}/advice/create', 'AdvisorsController@postGiveAdviceCreate')->middleware('facebook');
 
 // View for all advice given by the user
-Route::get('advice/me', 'AdvisorsController@getGiveAdviceShow')->middleware('facebook');
+Route::get('needAddvise/advice/me', 'AdvisorsController@getGiveAdviceShowByUser')->middleware('facebook');
 

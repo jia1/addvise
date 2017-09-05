@@ -1,25 +1,48 @@
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
-        <link rel="stylesheet" href="/css/popout.css" />
+        <title>Addvise | @yield('title', 'Seek Advice, Give Advice.')</title>
+        @include('partials._head')
+        @yield('stylesheets')
+        @yield('scripts')
     </head>
     <body>
         @include('partials._facebook')
-        <div class="flex-center position-ref full-height">
-            @include('partials._nav')
-            @yield('content')
-            @include('partials._footer')
-        </div>
 
-        <!-- SCRIPT TO CHECK IF JAVASCRIPT EXISTS -->
+        @if (Session::has('status'))
+            {{ Session::get('status') }}
+        @endif
+
         <noscript>
             <style type="text/css">
-                .pagecontainer {display:none;}
+                .pagecontainer {
+                    display: none;
+                }
             </style>
             <div class="noscriptmsg">
-                <!-- JAVASCRIPT BLOCKED -->
-                <meta http-equiv="refresh" content="0; url=./nojs" />
+                <meta http-equiv="refresh" content="0; url=./nojs">
             </div>
         </noscript>
+
+        @include('partials._nav')
+
+        <!-- Wrapper -->
+        <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header" class="alt">
+            <span class="logo"><img src="{{ url('img/addvise-icon.png') }}" alt="Addvise Logo"></span>
+                <h1>Addvise</h1>
+                <p>Seek Advice, Give Advice.</p>
+            <div class="fb-like" data-href="https://facebook.com/addvise"
+                data-layout="button_count" data-action="like" data-size="large" data-show-face />
+        </header>
+
+        </div>
+
+        @yield('content')
+        @include('partials._footer')
+
     </body>
 </html>
+
