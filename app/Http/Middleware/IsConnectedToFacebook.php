@@ -57,6 +57,7 @@ class IsConnectedToFacebook
 
                 if (! $app_id || ! $app_secret) {
                     Log::error('Middleware IsConnectedToFacebook: Either FACEBOOK_APP_ID or FACEBOOK_APP_SECRET is falsey.');
+                    $request->session()->flash('status', 'Addvise is temporarily unavailable. Please check back again later. We apologize for any inconvenience caused.');
                     return redirect('/');
                 }
 
@@ -88,8 +89,14 @@ class IsConnectedToFacebook
                     $token_row->fb_user_id = $fb_user_id;
                     $token_row->save();
                 }
+
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 Log::error($e->getMessage());
+            } catch (Facebook\Exceptions\FacebookResponseException $e) {
+                Log::warn('Middleware IsConnectedToFacebook: FacebookResponseException');
+                Log::warn($e->getMessage());
+                $request->session()->flash('status', 'Your authorization code has expired. Time for a refresh!');
+                return redirect('/');
             }
         }
 

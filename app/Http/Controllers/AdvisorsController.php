@@ -32,6 +32,9 @@ class AdvisorsController extends Controller {
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                $request->session()->flash('status', $e->getMessage());
+                redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -68,8 +71,12 @@ class AdvisorsController extends Controller {
                 $advice_given->fb_post_id = $fb_post_id;
                 $advice_given->fb_user_id = \Request::get('fb_user_id');
                 $advice_given->save();
+
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                $request->session()->flash('status', $e->getMessage());
+                redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -145,6 +152,9 @@ class AdvisorsController extends Controller {
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                     dd($e->getMessage());
+                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                    $request->session()->flash('status', $e->getMessage());
+                    redirect()->action('PagesController@getWelcome');
                 }
             }
         }

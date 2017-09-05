@@ -26,15 +26,15 @@ class AdviseesController extends Controller {
         } else {
             try {
                 $response = $fb->post($fb_page_id . '/feed', ['message' => $message], $access_token);
-                $response_array = $response->getDecodedBody();
+                $response_arr = $response->getDecodedBody();
 
-                Log::info($response_array);
+                Log::info($response_arr);
 
-                if (! array_key_exists('id', $response_array)) {
+                if (! array_key_exists('id', $response_arr)) {
                     // Handle corner case: E.g. Facebook server is down
                 }
 
-                $fb_id = $response_array['id'];
+                $fb_id = $response_arr['id'];
 
                 // Add created #needAddvise to database
                 $advice_request = new AdviceRequest;
@@ -46,6 +46,9 @@ class AdviseesController extends Controller {
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                $request->session()->flash('status', $e->getMessage());
+                return back();
             }
         }
 
@@ -69,13 +72,13 @@ class AdviseesController extends Controller {
             try {
                 $response = $fb->get($fb_page_id . '/feed?fields=created_time,message,id,comments.summary(true)&limit=10',
                     $access_token);
-                $response_array = $response->getDecodedBody();
+                $response_arr = $response->getDecodedBody();
 
-                if (! array_key_exists('data', $response_array)) {
+                if (! array_key_exists('data', $response_arr)) {
                     // Handle corner case
                 }
 
-                $data = $response_array['data'];
+                $data = $response_arr['data'];
                 foreach ($data as $key=>$val) {
                     if (array_key_exists('message', $data[$key])) {
                         $advice_requests[$key] = [];
@@ -90,7 +93,7 @@ class AdviseesController extends Controller {
 
                         $advice_request_from_db = AdviceRequest::select(['id', 'fb_user_id', 'is_anonymous', 'label'])
                             ->where('fb_post_id', explode('_', $val['id'])[1])->first();
-                        
+
                         $advice_requests[$key]['advice_request_id'] = null;
                         $advice_requests[$key]['fb_user_id'] = null;
                         $advice_requests[$key]['label'] = 0;
@@ -106,8 +109,12 @@ class AdviseesController extends Controller {
                         }
                     }
                 }
+
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
+            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                $request->session()->flash('status', $e->getMessage());
+                redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -164,8 +171,12 @@ class AdviseesController extends Controller {
                     foreach ($advice_requests as $key=>$val) {
                         $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
                     }
+
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                     dd($e->getMessage());
+                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                    $request->session()->flash('status', $e->getMessage());
+                    redirect()->action('PagesController@getWelcome');
                 }
             }
         }
