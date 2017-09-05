@@ -86,6 +86,7 @@ class AdvisorsController extends Controller {
         $advice_requests = [];
         $fb_post_rows = AdviceGiven::select('fb_post_id')
             ->where('fb_user_id', \Request::get('fb_user_id'))
+            ->orderBy('id', 'desc')
             ->take(10)->get();
 
         $fb_page_id = env('FACEBOOK_PAGE_ID', false);

@@ -119,6 +119,7 @@ class AdviseesController extends Controller {
         // Fetch fb_post_id from database
         $fb_post_rows = AdviceRequest::select(['fb_post_id', 'label'])
             ->where('fb_user_id', \Request::get('fb_user_id'))
+            ->orderBy('id', 'desc')
             ->take(10)->get();
 
         if (! $fb_post_rows) {
