@@ -9,7 +9,7 @@
     <nav>
   <ul>
     <li>
-      Welcome <div id="userName"></div>
+      <!-- Welcome <div id="userName"></div> -->
     </li>
     <li>
       <a href="{{ url('home') }}">HOME</a>

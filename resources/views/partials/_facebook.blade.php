@@ -13,6 +13,12 @@ function getUserName(callback){
     });
 }
 
+function getProfilePicture(callback){
+    FB.api('/me/picture?type=normal', function(response) {
+    callback(response.data.url);
+});
+}
+
 window.fbAsyncInit = function() {
     FB.init({appId : '1592283090803235',
         autoLogAppEvents : true,
@@ -30,6 +36,11 @@ window.fbAsyncInit = function() {
             getUserName((name)=>{
                 document.getElementById('userName').innerHTML=name;
             });
+
+            getProfilePicture((name)=>{
+                document.getElementById('profilePic').innerHTML="<img style='border: 3px solid #3a3a3a;' src='"+name+"'/>";;
+            });
+
             $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");

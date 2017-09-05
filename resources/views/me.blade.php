@@ -30,17 +30,9 @@
                         <!-- Me Section -->
                             <section id="me" class="main special">
                                 <header class="major">
-                                    <h2>My Advice</h2>
+                                    <div id="profilePic"></div>
+                                    <h2> <div id="userName"></div> Advice</h2>
                                 </header>
-                                <select>
-                                            <option value="" disabled selected hidden>Select Category</option>
-                                            <option value="volvo">Education</option>
-                                            <option value="saab">Healthcare</option>
-                                            <option value="opel">Ageing</option>
-                                            <option value="audi">Technology</option>
-                                            <option value="audi">Relationships</option>
-                                            <option value="audi">Others</option>
-                                            </select> <br>
 
                                 @yield('givenAdvice')
 
