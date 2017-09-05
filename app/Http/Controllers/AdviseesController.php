@@ -36,7 +36,7 @@ class AdviseesController extends Controller {
 
                 // Add created #needAddvise to database
                 $advice_request = new AdviceRequest;
-                $advice_requets->label = $label;
+                $advice_request->label = $label;
                 $advice_request->fb_post_id = explode('_', $fb_id)[1];
                 $advice_request->fb_user_id = \Request::get('fb_user_id');
                 $advice_request->save();
