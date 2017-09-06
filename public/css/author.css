@@ -11,3 +11,11 @@
     width: 32px;
 }
 
+.comments{
+        border-radius: 25px;
+        outline: black;
+        border: 2px solid lightgray;
+        padding: 20px; 
+}
+
+
