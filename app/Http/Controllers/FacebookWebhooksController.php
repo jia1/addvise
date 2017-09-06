@@ -26,9 +26,11 @@ class FacebookWebhooksController extends Controller
                 if ($request->header('Content-Type') === 'application/json') {
                     $sha1_header = $request->header('X-Hub-Signature');
                     $sha1_signature = substr($sha1_header, 5);
-                    Log::info('FBWebhooksC: ' . $sha1_signature);
-                    if ($sha1_signature === sha1(env('FACEBOOK_APP_SECRET', ''))) {
-                        $request_arr = $request->json()->all();
+                    $request_arr = $request->json()->all();
+                    $server_signature = hash_hmac('sha1', json_encode($request_arr), env('FACEBOOK_APP_SECRET', ''), 0);
+                    Log::info('FBWebhooksC: From FB - ' . $sha1_signature);
+                    Log::info('FBWebhooksC: From me - ' . $server_signature);
+                    if (true || $sha1_signature === $server_signature) {
                         Log::info($request_arr);
                         if (array_key_exists('object', $request_arr)) {
                             if ($request_arr['object'] === 'page') {
@@ -38,6 +40,7 @@ class FacebookWebhooksController extends Controller
                                         if ($change['field'] === 'feed') {
                                             if ($change['value']['verb'] === 'add') {
                                                 $fb_post_id = $change['value']['post_id'];
+                                                Log::info('FBWebhooksC: $fb_post_id - ' . $fb_post_id);
                                                 array_push($fb_post_id_arr, explode('_', $fb_post_id));
                                             }
                                         }
@@ -69,12 +72,11 @@ class FacebookWebhooksController extends Controller
                                 return response('OK', 200);
                             } else {
                                 if ($request_arr['object'] === 'permissions') {
-                                    foreach ($request_arr['entry'] as $entry) {
-                                        foreach ($entry as $i=>$change) {
-                                            foreach ($change['changed_fields'] as $j=>$field) {
-                                                if ($field === 'email') {
-                                                    // Check verb
-                                                }
+                                    foreach ($request_arr['entry'] as $change) {
+                                        foreach ($change['changed_fields'] as $i=>$field) {
+                                            if ($field === 'email') {
+                                                Log::info('FBWebhooksC: $field - ' . $field);
+                                                // Check verb
                                             }
                                         }
                                     }
