@@ -41,6 +41,27 @@
         width: 100px;
     }
 
+    #second{
+        display: none;
+        
+    }
+
+    .dropdown{
+        position: relative;
+        font-size: 130%;
+    }
+    
+
+    @media screen and (max-width: 736px) {
+        #first{
+            display: none;
+        }
+
+        #second{
+            display: block;
+        }
+    }
+
 </style>
 @stop
 
@@ -58,7 +79,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
+      <div class="container" id="first">
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
@@ -77,6 +98,44 @@
         </div>
       </div>
     </nav>
+
+    <script type="text/JavaScript">
+        function unhide(){
+            if(document.getElementsByClassName('dropdown')[0].style.display === 'block'){
+                document.getElementsByClassName('dropdown')[0].style.display = 'none';
+            }else{
+                document.getElementsByClassName('dropdown')[0].style.display = 'block';
+            }
+        }
+    </script>
+
+    <div id="second">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+                <ul class="navbar-nav ml-auto">
+                    <ul class="nav-item">
+                        <a style ="cursor:pointer; font-size: 150%;" onclick="unhide();">❤❤❤</a>
+                    </ul>
+                </ul>
+            <div class="dropdown" style="display:none;">
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <tr class="navbar-nav ml-auto">
+                    <ul class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
+                    </ul>
+                    <ul class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#terms">Addvise Terms</a>
+                    </ul>
+                    <ul class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#policy">Addvise Policy</a>
+                    </ul>
+                    <ul class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#team">Team</a>
+                    </ul>
+                </tr>
+                </div>
+            </div>
+        </nav>
+    </div>
 
     @extends('main')
 
@@ -271,10 +330,10 @@
     </div>
 
     <br><br>
-
-  </body>
+    </body>
 
 </html>
 
 @stop
+
 
