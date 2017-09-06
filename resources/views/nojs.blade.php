@@ -1,6 +1,8 @@
 <html>
     <head>
         <title>Addvise | Please enable JavaScript</title>
+        <link href="img/addvise-nojs.png" rel="shortcut icon" type="image/x-icon" />
+
         @include('partials._head')
     </head>
     <body>

@@ -41,6 +41,8 @@ window.fbAsyncInit = function() {
                 document.getElementById('profilePic').innerHTML="<img style='border: 3px solid #3a3a3a;' src='"+name+"'/>";;
             });
 
+            $('#mainNav').hide();
+
             $('.logout').click(function(response) {
                 FB.logout();
                 window.location.replace("/");
