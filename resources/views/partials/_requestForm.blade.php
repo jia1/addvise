@@ -45,10 +45,10 @@
 {{ Form::textarea('message', null, ['placeholder' => 'What advice do I need...?']) }}
 </p>
 
-<p>
+<div class = "row" style = "display:inline;">
 {{ Form::label('is_anonymous', 'Stay anonymous?') }}
 {{ Form::checkbox('is_anonymous', true, true) }}
-</p>
+</div>
 
 <p>
 {{ Form::submit('#needAddvise') }}
