@@ -91,6 +91,9 @@ class AdviseesController extends Controller {
 
                 $data = $response_arr['data'];
                 foreach ($data as $key=>$val) {
+                    if (! array_key_exists('message', $val)) {
+                        continue;
+                    }
                     $advice_requests[$key] = [];
                     $advice_requests[$key]['created_time'] = Carbon::parse($val['created_time'])->diffForHumans();
                     $advice_requests[$key]['message'] = $val['message'];
