@@ -113,7 +113,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <ul class="navbar-nav ml-auto">
                     <ul class="nav-item">
-                        <a style ="cursor:pointer; font-size: 150%;" onclick="unhide();">❤❤❤</a>
+                        <a style ="cursor:pointer; font-size: 200%;" onclick="unhide();">❤❤❤</a>
                     </ul>
                 </ul>
             <div class="dropdown" style="display:none;">

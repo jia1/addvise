@@ -42,6 +42,7 @@ window.fbAsyncInit = function() {
             });
 
             $('#mainNav').hide();
+            $('#second').hide();
 
             $('.logout').click(function(response) {
                 FB.logout();
