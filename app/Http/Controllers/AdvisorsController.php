@@ -33,7 +33,6 @@ class AdvisorsController extends Controller {
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                $request->session()->flash('status', $e->getMessage());
                 redirect()->action('PagesController@getWelcome');
             }
         }
@@ -76,12 +75,11 @@ class AdvisorsController extends Controller {
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                $request->session()->flash('status', $e->getMessage());
                 redirect()->action('PagesController@getWelcome');
             }
         }
 
-        $request->session()->flash('status', 'Your advice is up! One advice a day keeps the doctor away!');
+        $request->session()->flash('success', 'Your advice is up! One advice a day keeps the doctor away!');
         return redirect()->action('PagesController@getWelcome');
     }
 
@@ -168,7 +166,6 @@ class AdvisorsController extends Controller {
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                     dd($e->getMessage());
                 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                    $request->session()->flash('status', $e->getMessage());
                     redirect()->action('PagesController@getWelcome');
                 }
             }

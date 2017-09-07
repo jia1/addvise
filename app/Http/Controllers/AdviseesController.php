@@ -17,9 +17,9 @@ class AdviseesController extends Controller {
 
         if ($ttl > 0) {
             if ($ttl > 60) {
-                $request->session()->flash('status', 'Please wait for another ' . intdiv($ttl, 60) . ' minutes before posting again.');
+                $request->session()->flash('cooldown', 'Please wait for another ' . intdiv($ttl, 60) . ' minutes before posting again.');
             } else {
-                $request->session()->flash('status', 'Please wait for another ' . $ttl . ' seconds before posting again.');
+                $request->session()->flash('cooldown', 'Please wait for another ' . $ttl . ' seconds before posting again.');
             }
             return redirect('/');
         }
@@ -58,13 +58,12 @@ class AdviseesController extends Controller {
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                $request->session()->flash('status', $e->getMessage());
                 return redirect('/');
             }
         }
 
         Redis::setex(\Request::get('fb_user_id'), 300, 1);
-        $request->session()->flash('status', 'Your request is up! How about giving an advice to someone now?');
+        $request->session()->flash('success', 'Your request is up! How about giving an advice to someone now?');
         return redirect()->action('PagesController@getWelcome');
     }
 
@@ -152,7 +151,6 @@ class AdviseesController extends Controller {
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                 dd($e->getMessage());
             } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                $request->session()->flash('status', $e->getMessage());
                 redirect()->action('PagesController@getWelcome');
             }
         }
@@ -238,7 +236,6 @@ class AdviseesController extends Controller {
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
                     dd($e->getMessage());
                 } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                    $request->session()->flash('status', $e->getMessage());
                     redirect()->action('PagesController@getWelcome');
                 }
             }

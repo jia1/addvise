@@ -11,12 +11,22 @@
     <body>
         @include('partials._facebook')
 
-        @if (Session::has('status'))
+        @if (Session::has('success'))
         <script>
         swal(
             'Success',
-            "{{ Session::get('status') }}",
+            "{{ Session::get('success') }}",
             'success'
+        );
+        </script>
+        @endif
+
+        @if (Session::has('cooldown'))
+        <script>
+        swal(
+            'No spamming please!',
+            "{{ Session::get('cooldown') }}",
+            'warning'
         );
         </script>
         @endif
