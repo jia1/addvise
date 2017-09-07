@@ -65,21 +65,13 @@
                 <a href="{{ url('me') }}">ME</a>
             </ul>
             <ul>
-                <a class="logout" onclick="logoutPopUp()">LOGOUT</a>
+                <a class="logout">LOGOUT</a>
             </ul>
         </div>
     </nav>
 </div>
 
-
-<script type="text/JavaScript">
-function logoutPopUp() {
-  alert("You are now logged out of Addvise. Have a great day ahead!");
-}
-</script>
-
 <style type="text/css">
-
     @media screen and (max-width: 1250px) {
         #login{
             position: relative;
@@ -106,18 +98,15 @@ function logoutPopUp() {
         font-size: 130%;
         display: none;
     }
-
 </style>
 
 <script type="text/JavaScript">
-
-    function dropit(){
-        if(document.getElementById('dropdown').style.display === 'block'){
-            document.getElementById('dropdown').style.display = 'none';
-        }else{
-            document.getElementById('dropdown').style.display = 'block';
-        }
+function dropit(){
+    if(document.getElementById('dropdown').style.display === 'block'){
+        document.getElementById('dropdown').style.display = 'none';
+    }else{
+        document.getElementById('dropdown').style.display = 'block';
     }
+}
 </script>
-
 

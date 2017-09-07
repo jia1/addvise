@@ -44,10 +44,32 @@ $(document).ready(function() {
                 $('#second').hide();
 
                 $('.logout').click(function(response) {
-                    FB.logout();
-                    window.location.replace("/");
-                    $('.nav-internal').hide();
-                    $('.nav-external').show();
+                    swal({title: 'Are you sure?',
+                        text: 'You are about to log out from Addvise.',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                        cancelButtonText: 'No'
+                    }).then(
+                        function () {
+                            swal({title: 'Logging out...',
+                                text: 'Have a great day ahead!',
+                                confirmButtonText: 'Yes, I will!',
+                                timer: 5000
+                            }).then(function () {
+                                FB.logout();
+                                window.location.replace("/");
+                                $('.nav-internal').hide();
+                                $('.nav-external').show();
+                            });
+                        }, function (dismiss) {
+                            if (dismiss === 'cancel') {
+                                swal({title: ':D',
+                                    text: 'Please stay here for ever and ever!',
+                                    confirmButtonText: 'Yes!',
+                                    timer: 5000
+                                });
+                            }
+                        });
                 });
             } else {
                 // Either:
@@ -64,7 +86,7 @@ $(document).ready(function() {
                             swal({title: 'Facebook login failure',
                                 text: 'You closed the login window, right?',
                                 showConfirmButton: false,
-                                timer: 750
+                                timer: 1000
                             });
                         }
                     }, {scope: 'public_profile,email',
@@ -77,7 +99,7 @@ $(document).ready(function() {
         // Translate FB user IDs to names
         setTimeout(function () {
             translateFB(FB);
-        }, 1500);
+        }, 1800);
     });
 });
 </script>
