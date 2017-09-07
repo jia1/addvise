@@ -6,7 +6,6 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script>
-
 function getUserName(callback){
     FB.api('/me', function(response) {
         callback(response.name);
@@ -15,67 +14,61 @@ function getUserName(callback){
 
 function getProfilePicture(callback){
     FB.api('/me/picture?type=normal', function(response) {
-    callback(response.data.url);
-});
+        callback(response.data.url);
+    });
 }
+</script>
 
-window.fbAsyncInit = function() {
-    FB.init({appId : '1592283090803235',
-        autoLogAppEvents : true,
-        cookie           : true,
-        status           : true,
-        xfbml            : true,
-        version          : 'v2.10'
-    });
-    FB.AppEvents.logPageView();
+<script>
+$(document).ready(function() {
+    $.ajaxSetup({ cache: true });
+    $.getScript('//connect.facebook.net/en_US/sdk.js', function(){
+        FB.init({appId : '1592283090803235',
+            autoLogAppEvents : true,
+            cookie           : true,
+            status           : true,
+            xfbml            : true,
+            version          : 'v2.10'
+        });
 
-    FB.getLoginStatus(function(response) {
-        if (response.status === 'connected') {
-            // Is logged in to Facebook and has authorized this app
-            $('.nav-internal').show();
-            getUserName((name)=>{
-                document.getElementById('userName').innerHTML=name;
-            });
+        FB.AppEvents.logPageView();
 
-            getProfilePicture((name)=>{
-                document.getElementById('profilePic').innerHTML="<img style='border: 3px solid #3a3a3a;' src='"+name+"'/>";;
-            });
+        FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+                // Is logged in to Facebook and has authorized this app
+                $('.nav-internal').show();
+                $('#mainNav').hide();
 
-            $('#mainNav').hide();
-
-            $('.logout').click(function(response) {
-                FB.logout();
-                window.location.replace("/");
-                $('.nav-internal').hide();
-                $('.nav-external').show();
-            });
-        } else {
-            // Either:
-            // Is logged in to Facebook but has not authorized this app, OR
-            // Is not logged in to Facebook
-            $('.nav-external').show();
-            $('#login').click(function() {
-                FB.login(function(response) {
-                    if (response.authResponse) {
-                        window.location.replace("{{ url('home') }}");
-                    } else {
-                        alert("Facebook login failure. You closed the login window, right?");
-                    }
-                }, {scope: 'public_profile,email',
-                    return_scopes: true
+                $('.logout').click(function(response) {
+                    FB.logout();
+                    window.location.replace("/");
+                    $('.nav-internal').hide();
+                    $('.nav-external').show();
                 });
-            });
-        }
+            } else {
+                // Either:
+                // Is logged in to Facebook but has not authorized this app, OR
+                // Is not logged in to Facebook
+                $('.nav-external').show();
+                $('#login').click(function() {
+                    FB.login(function(response) {
+                        if (response.authResponse) {
+                            window.location.replace("{{ url('home') }}");
+                        } else {
+                            alert("Facebook login failure. You closed the login window, right?");
+                        }
+                    }, {scope: 'public_profile,email',
+                        return_scopes: true
+                    });
+                });
+            }
+        });
+
+        // Translate FB user IDs to names
+        setTimeout(function () {
+            translateFB(FB);
+        }, 3000);
     });
-};
-
-(function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-
+});
 </script>
 

@@ -21,3 +21,12 @@ for (let i = 0; i < labels.length; i++) {
     labels[i].innerText = labelMap[labels[i].innerText];
 }
 
+function translateFB(FB) {
+    let fb_user_ids = document.getElementsByClassName('fb-user-id');
+    for (let j = 0; j < fb_user_ids.length; j++) {
+        FB.api(fb_user_ids[j].innerText, function (response) {
+            fb_user_ids[j].innerText = response['name'];
+        });
+    }
+}
+
