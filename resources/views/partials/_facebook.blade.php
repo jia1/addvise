@@ -36,8 +36,8 @@ $(document).ready(function() {
         FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 // Is logged in to Facebook and has authorized this app
+                $('.navbar-nav .ml-auto').hide();
                 $('.nav-internal').show();
-                $('#mainNav').hide();
 
                 $('.logout').click(function(response) {
                     FB.logout();
@@ -50,6 +50,8 @@ $(document).ready(function() {
                 // Is logged in to Facebook but has not authorized this app, OR
                 // Is not logged in to Facebook
                 $('.nav-external').show();
+                $('.navbar-nav .ml-auto').show();
+
                 $('#login').click(function() {
                     FB.login(function(response) {
                         if (response.authResponse) {
@@ -67,7 +69,7 @@ $(document).ready(function() {
         // Translate FB user IDs to names
         setTimeout(function () {
             translateFB(FB);
-        }, 3000);
+        }, 1500);
     });
 });
 </script>
