@@ -40,7 +40,16 @@
         </div>
         <div class="blog-footer">
         @foreach($post['comments'] as $comment)
-            <p class="comments"><b> {{ $comment }}</p>
+            <p class="comments">
+                <span style="color:gray;">
+                @if (! $comment['fb_user_id'])
+                    Addvise:
+                @else
+                    <span class="fb-user-id">{{ $comment['fb_user_id'] }}</span>:
+                @endif
+                </span>
+                <b> {{ $comment['message'] }}</b>
+            </p>
         @endforeach
         <ul>
             <li class="give-advice"><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}" target="_blank">View on Facebook</a></li>
@@ -49,7 +58,7 @@
     </section>
     @endforeach
     </section>
-    
+
 </div>
 </div>
 

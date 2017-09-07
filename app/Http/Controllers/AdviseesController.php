@@ -19,7 +19,7 @@ class AdviseesController extends Controller {
             if ($ttl > 60) {
                 $request->session()->flash('status', 'Please wait for another ' . intdiv($ttl, 60) . ' minutes before posting again.');
             } else {
-                $request->session()->flash('status', 'Please wait for another ' . intdiv . ' seconds before posting again.');
+                $request->session()->flash('status', 'Please wait for another ' . $ttl . ' seconds before posting again.');
             }
             return redirect('/');
         }
@@ -198,8 +198,14 @@ class AdviseesController extends Controller {
                         $advice_requests[$key]['message'] = $val['message'];
                         $advice_requests[$key]['fb_post_id'] = $val['id'];
                         $advice_requests[$key]['comments'] = [];
+
+                        $fb_comment_id_arr = [];
                         foreach ($val['comments']['data'] as $c_key=>$c_val) {
-                            $advice_requests[$key]['comments'][$c_key] = $c_val['message'];
+                            $advice_requests[$key]['comments'][$c_key] = [];
+                            $advice_requests[$key]['comments'][$c_key]['message'] = $c_val['message'];
+                            $advice_requests[$key]['comments'][$c_key]['fb_comment_id'] = $c_val['id'];
+                            $advice_requests[$key]['comments'][$c_key]['fb_user_id'] = null;
+                            array_push($fb_comment_id_arr, explode('_', $c_val['id'])[1]);
                         }
                         $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
                     }
@@ -207,6 +213,26 @@ class AdviseesController extends Controller {
                     $i = 0;
                     foreach ($advice_requests as $key=>$val) {
                         $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
+                    }
+
+                    $advice_given_from_db = AdviceGiven::select('id', 'fb_comment_id', 'fb_user_id', 'is_anonymous')
+                        ->whereIn('fb_comment_id', $fb_comment_id_arr)
+                        ->get();
+
+                    if (! $advice_given_from_db) {
+                        ;
+                    } else {
+                        $advice_given_from_db_arr = $advice_given_from_db->toArray();
+                        foreach ($advice_given_from_db_arr as $d_key=>$d_val) {
+                            $i = array_search($d_val['fb_comment_id'], $fb_comment_id_arr);
+                            if ($i === false) {
+                                ;
+                            } else {
+                                if (! $d_val['is_anonymous']) {
+                                    $advice_requests[$key]['comments'][$i]['fb_user_id'] = $d_val['fb_user_id'];
+                                }
+                            }
+                        }
                     }
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
