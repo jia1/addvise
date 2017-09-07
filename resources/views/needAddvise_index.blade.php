@@ -44,7 +44,7 @@
         </div>
         <div class="blog-footer">
         @foreach($post['comments'] as $comment)
-            <p class="comments"><b> {{ $comment }}</p>
+            <p class="comments"> <i style = "color: gray;"> <u> commenter: </u> </i> <br> <br> <b> {{ $comment }}</p>
         @endforeach
         <ul>
             <li class="give-advice"><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}" target="_blank">View on Facebook</a></li>
