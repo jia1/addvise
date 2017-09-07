@@ -1,11 +1,5 @@
 <!DOCTYPE html>
 
-@extends('main')
-
-@section('title', 'Welcome')
-
-@section('content')
-
 @section('stylesheets')
 <style script="text/css">
     body{
@@ -142,6 +136,12 @@
             </div>
         </nav>
     </div>
+
+    @extends('main')
+
+    @section('title', 'Welcome')
+
+    @section('content') 
 
     <!--Contain the frame-->
     <div id="main">
