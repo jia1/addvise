@@ -61,7 +61,11 @@ $(document).ready(function() {
                         if (response.authResponse) {
                             window.location.replace("{{ url('home') }}");
                         } else {
-                            alert("Facebook login failure. You closed the login window, right?");
+                            swal({title: 'Facebook login failure',
+                                text: 'You closed the login window, right?',
+                                showConfirmButton: false,
+                                timer: 750
+                            });
                         }
                     }, {scope: 'public_profile,email',
                         return_scopes: true
