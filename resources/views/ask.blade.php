@@ -3,12 +3,6 @@
 @section('title', 'Ask')
 
 @section('scripts')
-<!-- Scripts -->
-<script>
-    function submitAction() {
-        alert('Your request is up! Sit tight and wait for Addvise!');
-    }
-</script>
 @stop
 
 @section('content')

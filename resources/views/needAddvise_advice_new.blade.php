@@ -3,12 +3,6 @@
 @section('title', 'Ask')
 
 @section('scripts')
-<!-- Scripts -->
-<script>
-    function submitAction() {
-        alert('Your request is up! Sit tight and wait for Addvise!');
-    }
-    </script>
 @stop
 
 @section('content')
@@ -27,8 +21,8 @@
                 </header>
 
                 <section class="box">
-                	<p class="request">You are giving an advice to:</p>
-                	<p class="request">{{ $advice_request_message }}</p>
+                    <p class="request">You are giving an advice to:</p>
+                    <p class="request">{{ $advice_request_message }}</p>
                     @include('partials._adviceForm')
                 </section>
             </div>
