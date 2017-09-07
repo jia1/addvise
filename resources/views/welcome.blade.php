@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 
+@extends('main')
+
+@section('title', 'Welcome')
+
+@section('content')
+
 @section('stylesheets')
 <style script="text/css">
     body{
@@ -16,8 +22,8 @@
 
     #main{
         position: relative;
-        width: 70%;
-        left: 15%;
+        width: 88%;
+        left: 6%;
     }
 
     #about,
@@ -137,25 +143,19 @@
         </nav>
     </div>
 
-    @extends('main')
-
-    @section('title', 'Welcome')
-
-    @section('content')
-
     <!--Contain the frame-->
     <div id="main">
         <div id="innerContainer">
 
             <!-- About -->
-            <section id="about">
+            <section id="about" class="main special">
             <div class="container">
-                <div class="row">
+                <header class="major">
+                    <h2>About Addvise</h2>
                 <div class="col-lg-12 text-center">
-                    <h1 class="section-heading">About Addvise</h1>
                     <h3 class="section-subheading text-muted">Seek advice, give advice. Help others.</h3>
                 </div>
-                </div>
+                </header>
             </div>
 
             <div class="row">
@@ -172,9 +172,11 @@
             <br>
 
             <!-- Terms and Condition -->
-            <section id="terms">
+            <section id="terms" class="main special">
                 <div class="container">
-                    <h1 class="section-heading">Addvise Terms of Service</h1>
+                    <header class="major">
+                        <h2>Addvise Terms of Service</h2>
+                    </header>
 
                     <h2>1. Terms</h2>
                         <p>By accessing the website at <a href="https://addvise.ml/">https://addvise.ml/</a>, you are agreeing to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
@@ -221,9 +223,11 @@
             <br>
 
             <!-- Privacy Policy -->
-            <section id="policy">
+            <section id="policy" class="main special">
                 <div class="container">
-                    <h1 class="section-heading">Addvise Privacy Policy</h1>
+                    <header class="major">
+                        <h2>Addvise Privacy Policy</h2>
+                    </header>
                     
                     <p>This privacy policy ("Policy") describes how Website Operator ("Website Operator", "we", "us" or "our") collects, protects and uses the personally identifiable information ("Personal Information") you ("User", "you" or "your") may provide on the <a target="_blank" rel="nofollow" href="https://addvise.ml">https://addvise.ml</a> website and any of its products or services (collectively, "Website" or "Services"). It also describes the choices available to you regarding our use of your personal information and how you can access and update this information. This Policy does not apply to the practices of companies that we do not own or control, or to individuals that we do not employ or manage.</p>
 
@@ -276,12 +280,14 @@
             <br>
 
             <!-- Team -->
-            <section class="bg-light" id="team">
+            <section class="main special" id="team">
             <div class="container">
+                <header class="major">
+                    <h2>Addvise Amazing Team</h2>
+                </header>
                 <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 class="section-heading">Our Amazing Team</h1>
-                    <h3 class="section-subheading text-muted">Meet out amazing team who developed Addvise in a short span of 4 weeks named in ascending order.</h3>
+                    <h3 class="section-subheading text-muted">Meet our amazing team who developed Addvise in a short span of 4 weeks named in ascending order.</h3>
                 </div>
                 </div>
                 <div class="row">
@@ -313,7 +319,6 @@
                         <p class="text-muted">Student</p>
                         </div>
                     </div>
-                </div>
             </div>
             </section>
 
