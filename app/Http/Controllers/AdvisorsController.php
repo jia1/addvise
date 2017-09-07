@@ -67,6 +67,7 @@ class AdvisorsController extends Controller {
 
                 // Add created advice to database
                 $advice_given = new AdviceGiven;
+                $advice_given->is_anonymous = ($is_anonymous? true : false);
                 $advice_given->fb_comment_id = explode('_', $fb_id)[1];
                 $advice_given->fb_post_id = $fb_post_id;
                 $advice_given->fb_user_id = \Request::get('fb_user_id');

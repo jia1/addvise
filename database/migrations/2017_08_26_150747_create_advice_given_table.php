@@ -18,6 +18,7 @@ class CreateAdviceGivenTable extends Migration
             $table->bigInteger('fb_comment_id')->unsigned()->unique()->index();
             $table->bigInteger('fb_user_id')->unsigned()->index();
             $table->bigInteger('fb_post_id')->unsigned()->index();
+            $table->boolean('is_anonymous');
         });
         Schema::table('advice_given', function($table) {
             $table->foreign('fb_user_id')->references('fb_user_id')->on('users');
