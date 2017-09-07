@@ -6,6 +6,7 @@ integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 crossorigin="anonymous"></script>
 
 <script>
+
 function getUserName(callback){
     FB.api('/me', function(response) {
         callback(response.name);
@@ -38,6 +39,9 @@ $(document).ready(function() {
                 // Is logged in to Facebook and has authorized this app
                 $('.navbar-nav .ml-auto').hide();
                 $('.nav-internal').show();
+
+                $('#mainNav').hide();
+                $('#second').hide();
 
                 $('.logout').click(function(response) {
                     FB.logout();
