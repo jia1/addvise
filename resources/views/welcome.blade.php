@@ -107,6 +107,12 @@
                 document.getElementsByClassName('dropdown')[0].style.display = 'block';
             }
         }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
     </script>
 
     <div id="second">
@@ -167,7 +173,9 @@
             </section>
 
             <br><br>
-
+            
+            <center><button onclick="topFunction()" title="Go to top">Top</button></center>
+            <br>
             <div class="line"></div>
             <br>
 
@@ -219,6 +227,8 @@
                 </div>
             </section>
 
+            <center><button onclick="topFunction()" title="Go to top">Top</button></center>
+            <br>
             <div class="line"></div>
             <br>
 
@@ -276,6 +286,8 @@
                 </div>
             </section>
 
+            <center><button onclick="topFunction()" title="Go to top">Top</button></center>
+            <br>
             <div class="line"></div>
             <br>
 
@@ -321,6 +333,9 @@
                     </div>
             </div>
             </section>
+
+            <center><button onclick="topFunction()" title="Go to top">Top</button></center>
+            <br>
 
             <!-- Footer -->
             <footer>
