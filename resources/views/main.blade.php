@@ -12,7 +12,13 @@
         @include('partials._facebook')
 
         @if (Session::has('status'))
-            {{ Session::get('status') }}
+        <script>
+        swal(
+            'Success',
+            "{{ Session::get('status') }}",
+            'success'
+        );
+        </script>
         @endif
 
         <noscript>
