@@ -24,7 +24,7 @@ Route::get('home', 'PagesController@getHome')->middleware('facebook');
 Route::get('ask', 'PagesController@getAsk')->middleware('facebook');
 
 // Policy and Terms
-Route::get('policy', 'PagesController@getPolicy')->middleware('facebook');
+Route::get('policy', 'PagesController@getPolicy');
 
 // My Profile
 Route::get('me', 'PagesController@getMe')->middleware('facebook');
