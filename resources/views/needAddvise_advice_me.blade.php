@@ -26,7 +26,7 @@
                 @if (! $post['fb_user_id'])
                     <h3>Addvise</h3>
                 @else
-                    <h3>{{ $post['fb_user_id'] }}</h3>
+                    <h3 class="fb-user-id">{{ $post['fb_user_id'] }}</h3>
                 @endif
             </div>
         </div>
@@ -53,7 +53,7 @@
     </section>
     @endforeach
     </section>
-    
+
 </div>
 </div>
 

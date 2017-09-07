@@ -26,7 +26,7 @@
                 @if (! $post['fb_user_id'])
                     <h3>Addvise</h3>
                 @else
-                    <h3>{{ $post['fb_user_id'] }}</h3>
+                    <h3 class="fb-user-id">{{ $post['fb_user_id'] }}</h3>
                 @endif
             </div>
         </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="blog-footer">
         @foreach($post['comments'] as $comment)
-            <p class="comments"><b> {{ $comment }}</p>
+            <p class="comments"> <i style = "color: gray;">  commenter:  </i> <b> {{ $comment }} </b> </p>
         @endforeach
         <ul>
             <li class="give-advice"><a href="{{ url('https://facebook.com/' . $post['fb_post_id']) }}" target="_blank">View on Facebook</a></li>
