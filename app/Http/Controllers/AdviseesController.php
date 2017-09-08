@@ -208,28 +208,28 @@ class AdviseesController extends Controller {
                             array_push($fb_comment_id_arr, explode('_', $c_val['id'])[1]);
                         }
                         $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
-                    }
 
-                    $i = 0;
-                    foreach ($advice_requests as $key=>$val) {
-                        $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
-                    }
+                        $i = 0;
+                        foreach ($advice_requests as $key=>$val) {
+                            $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
+                        }
 
-                    $advice_given_from_db = AdviceGiven::select('id', 'fb_comment_id', 'fb_user_id', 'is_anonymous')
-                        ->whereIn('fb_comment_id', $fb_comment_id_arr)
-                        ->get();
+                        $advice_given_from_db = AdviceGiven::select('id', 'fb_comment_id', 'fb_user_id', 'is_anonymous')
+                            ->whereIn('fb_comment_id', $fb_comment_id_arr)
+                            ->get();
 
-                    if (! $advice_given_from_db) {
-                        ;
-                    } else {
-                        $advice_given_from_db_arr = $advice_given_from_db->toArray();
-                        foreach ($advice_given_from_db_arr as $d_key=>$d_val) {
-                            $i = array_search($d_val['fb_comment_id'], $fb_comment_id_arr);
-                            if ($i === false) {
-                                ;
-                            } else {
-                                if (! $d_val['is_anonymous']) {
-                                    $advice_requests[$key]['comments'][$i]['fb_user_id'] = $d_val['fb_user_id'];
+                        if (! $advice_given_from_db) {
+                            ;
+                        } else {
+                            $advice_given_from_db_arr = $advice_given_from_db->toArray();
+                            foreach ($advice_given_from_db_arr as $d_key=>$d_val) {
+                                $i = array_search($d_val['fb_comment_id'], $fb_comment_id_arr);
+                                if ($i === false) {
+                                    ;
+                                } else {
+                                    if (! $d_val['is_anonymous']) {
+                                        $advice_requests[$key]['comments'][$i]['fb_user_id'] = $d_val['fb_user_id'];
+                                    }
                                 }
                             }
                         }
