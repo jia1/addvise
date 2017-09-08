@@ -26,15 +26,17 @@ Contribution:
 12. Integrate backend into frontend for "Give An Advice" section: retrieving username (anonymous/ non-anonymous), comments, category, time posted, number of advices.
 13. Change date format retrieved from Database into human-readable form (e.g. from 2017-08-09 14:45:15 UTC to 6 hours ago)
 14. Create view for "Me"
-15. Retrieve profile picture and username of user using Facebook Graph API for display
-16. Create Responsive Navigation Bar
-17. Add animation to the navigation icon
-18. Set up and embed Google Analytics
-19. Write-up for mid-assignment submission, proof-read submission at end to ensure everything is connected
-20. Write-up for milestone submission documents
-21. Write-up for pitch
-22. Create README.md file for submission
-23. Keeping the group on track by reminding them of milestones yet to make progress on
+15. Create view for "Home"
+16. Retrieve profile picture and username of user using Facebook Graph API for display
+17. Create Responsive Navigation Bar
+18. Add animation to the navigation icon
+19. Add links to navigation bar items
+20. Set up and embed Google Analytics
+21. Write-up for mid-assignment submission, proof-read submission at end to ensure everything is connected
+22. Write-up for milestone submission documents
+23. Write-up for pitch
+24. Create README.md file for submission
+25. Keeping the group on track by reminding them of milestones yet to make progress on
 
 Name: Lim Jia Yee
 
