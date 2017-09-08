@@ -62,6 +62,7 @@
             <span class="logo"><img src="{{ url('img/addvise-icon.png') }}" alt="Addvise Logo"></span>
                 <h1>Addvise</h1>
                 <p>Seek Advice, Give Advice.</p>
+                <br><br>
             <div class="fb-like" data-href="https://facebook.com/addvise"
                 data-layout="button_count" data-action="like" data-size="large" data-show-face />
         </header>
