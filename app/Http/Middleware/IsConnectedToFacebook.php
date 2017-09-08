@@ -22,21 +22,18 @@ class IsConnectedToFacebook
     {
         Log::info('Middleware IsConnectedToFacebook: Executing...');
 
+        $token = '';
         try {
             $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
             $token = $fb->getJavaScriptHelper()->getAccessToken();
         } catch (Facebook\Exceptions\FacebookSDKException $e) {
-            Log::error('Middleware IsConnectedToFacebook: FacebookSDKException');
-            Log::error($e->getMessage());
-        } catch (Facebook\Exceptions\FacebookResponseException $e) {
-            Log::warn('Middleware IsConnectedToFacebook: FacebookResponseException');
-            Log::warn($e->getMessage());
-            $token = '';
+            $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+            return redirect()->action('PagesController@getWelcome');
         }
 
         if (! $token) {
             Log::error('Middleware IsConnectedToFacebook: (JavaScript) $token is falsey.');
-            return redirect('/');
+            return redirect()->action('PagesController@getWelcome');
         }
 
         $fb_user_token_row = Token::where('fb_user_token_temp', $token)->first();
@@ -56,9 +53,7 @@ class IsConnectedToFacebook
                 $app_secret = env('FACEBOOK_APP_SECRET', false);
 
                 if (! $app_id || ! $app_secret) {
-                    Log::error('Middleware IsConnectedToFacebook: Either FACEBOOK_APP_ID or FACEBOOK_APP_SECRET is falsey.');
-                    $request->session()->flash('status', 'Addvise is temporarily unavailable. Please check back again later. We apologize for any inconvenience caused.');
-                    return redirect('/');
+                    // Handle corner case
                 }
 
                 $response = $fb->get('/oauth/access_token?grant_type=fb_exchange_token&client_id='
@@ -67,13 +62,13 @@ class IsConnectedToFacebook
                 $response_arr = $response->getDecodedBody();
 
                 if (! array_key_exists('access_token', $response_arr)) {
-                    Log::error('');
+                    ;
                 } else {
                     $fb_user_token_long = $response_arr['access_token'];
                     $m_response = $fb->get('/me', $fb_user_token_long);
                     $m_response_arr = $m_response->getDecodedBody();
                     if (! array_key_exists('id', $m_response_arr)) {
-                        Log::error('');
+                        ;
                     } else {
                         $fb_user_id = $m_response_arr['id'];
                     }
@@ -91,12 +86,8 @@ class IsConnectedToFacebook
                 }
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                Log::error($e->getMessage());
-            } catch (Facebook\Exceptions\FacebookResponseException $e) {
-                Log::warn('Middleware IsConnectedToFacebook: FacebookResponseException');
-                Log::warn($e->getMessage());
-                $request->session()->flash('status', 'Your authorization code has expired. Time for a refresh!');
-                return redirect('/');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
