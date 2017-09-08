@@ -2657,10 +2657,6 @@
 
 /* Section/Article */
 
-	section.special, article.special {
-		text-align: ;
-	}
-
 	header.major {
 		margin-bottom: 3em;
 		text-align: center;
@@ -3103,7 +3099,7 @@
 		}
 
 		#header.alt {
-			padding: 1em 5em 4em 5em ;
+			padding: 1em 9em 4em 5em;
 		}
 
 			#header.alt h1 {
@@ -3136,11 +3132,11 @@
 
 				#header.alt .logo img {
 					display: block;
-					margin: 0 auto;
+					margin: 20px auto;
 					max-width: 75%;
 				}
 
-		@media screen and (max-width: 1280px) {
+		@media screen and (min-width: 981px) and (max-width: 1280px) {
 
 			#header {
 				padding: 4em 4em 0.1em 4em ;
@@ -3152,7 +3148,7 @@
 
 		}
 
-		@media screen and (max-width: 980px) {
+		@media screen and (min-width: 737px) and (max-width: 980px) {
 
 			#header {
 				padding: 4em 3em 0.1em 3em ;
