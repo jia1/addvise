@@ -27,7 +27,6 @@ class IsConnectedToFacebook
             $token = Session::get('fb_user_access_token');
 
             if (! isset($token)) {
-                // $token = $fb->getAccessTokenFromRedirect();
                 $token = $fb->getJavaScriptHelper()->getAccessToken();
             }
         } catch (Facebook\Exceptions\FacebookSDKException $e) {
@@ -36,18 +35,7 @@ class IsConnectedToFacebook
         }
 
         if (! isset($token)) {
-            /*
-            $helper = $fb->getRedirectLoginHelper();
-            if (! $helper->getError()) {
-                abort(403, 'Forbidden');
-            }
-            dd(
-                $helper->getError(),
-                $helper->getErrorCode(),
-                $helper->getErrorReason(),
-                $helper->getErrorDescription()
-            );
-             */
+            $request->session()->flash('error', 'We could not get your access token. Please login again!');
             return redirect()->action('PagesController@getWelcome');
         }
 

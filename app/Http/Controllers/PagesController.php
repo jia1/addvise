@@ -9,10 +9,7 @@ use SammyK;
 class PagesController extends Controller {
     // READ: Welcome page for everyone
     public function getWelcome(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
-        $login_link = $fb
-            ->getRedirectLoginHelper()
-            ->getLoginUrl(url('home'), ['email', 'public_profile']);
-        return view('welcome', ['login_link' => $login_link]);
+        return view('welcome');
     }
 
     public function getHome() {
