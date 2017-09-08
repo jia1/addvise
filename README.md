@@ -44,19 +44,19 @@ Contribution:
 
 > Back-end Developer
 
-0. Design and idea of Addvise
-1. Set up and maintain AWS RHEL
-2. Set up and configure / maintain Nginx web server
-3. Install production environment (Laravel and other dependencies and package managers)
-4. Connect remote DBs (provisioned by cloud services) to Laravel app
-5. Write migration files based on Daphne's input (because I did not know what a foreign key was)
-6. Integrate Facebook SDK (both PHP and JS) into Laravel
-7. Write entire Facebook login flow (what I did with the extended tokens did not seem right though)
-8. Manage Addvise app page and Addvise app advanced settings for app page
+1. Design and idea of Addvise
+2. Set up and maintain AWS RHEL and DNS
+3. Set up and configure / maintain Nginx web server
+4. Install production environment (Laravel and other dependencies and package managers)
+5. Connect remote DBs (provisioned by cloud services) to Laravel app
+6. Write migration files based on Daphne's input (because I did not know what a foreign key was)
+7. Integrate Facebook SDK (both PHP and JS) into Laravel
+8. Write entire Facebook login flow (what I did with the extended tokens did not seem right though)
+9. Manage Addvise app page and Addvise app advanced settings for app page
 10. Write and maintain routes and middleware
 11. Write Facebook graph API calls for CR (no UD) to Addvise page
-12. Integrate information from (8) into database (for retention of authorship information)
-13. Integrate information from (8) and (9) into front-end (wrote Blade files that capture all the information)
+12. Integrate information from (11) into database via Eloquent ORM (for retention of authorship information)
+13. Integrate information from (11) and (12) into front-end (wrote Blade files that capture all the information)
 14. Wrote the entire is_anonymous or not feature (back-end to front-end)
 15. Add and integrate (from back-end to front-end) categories to the requests for advice
 16. In the front-end, translate numerical categories and non-anonymous user IDs (they were stored as numbers in the DB) to English
