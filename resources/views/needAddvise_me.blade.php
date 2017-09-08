@@ -19,6 +19,13 @@
         <h2>My Requests</h2>
     </header>
 
+    @if (! json_decode($advice_requests, true))
+    <section class="box">
+        <div class="blog-summary">
+            <p>No request up yet! Why not write one now? (: Ask <a href="{{ url('ask') }}">here</a>.</p>
+        </div>
+    </section>
+    @else
     @foreach(json_decode($advice_requests, true) as $post)
     <section class="box">
         <div class="blog-header">
@@ -57,6 +64,8 @@
         </div>
     </section>
     @endforeach
+    @endif
+
     </section>
 
 </div>
