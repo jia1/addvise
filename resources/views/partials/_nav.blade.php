@@ -40,7 +40,7 @@
 
     <nav id="xo">
         <ul>
-            <a style ="cursor:pointer; font-size: 200%;" onclick="dropit();">❤❤❤</a>
+            <a style ="cursor:pointer; font-size: 200%;" onclick="dropit();"><div id = "nav-icon1"><span></span> <span> </span> <span> </span> </div> </a>
         </ul>
         <div id="dropdown" style="display:none;">
             <ul>
@@ -108,5 +108,12 @@ function dropit(){
         document.getElementById('dropdown').style.display = 'block';
     }
 }
+
+
+$(document).ready(function(){
+    $('#nav-icon1').click(function(){
+        $(this).toggleClass('open');
+    });
+});
 </script>
 
