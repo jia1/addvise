@@ -1698,7 +1698,7 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 	}
 
 		p.content {
@@ -3090,7 +3090,6 @@
 /* Header */
 
 	#header {
-		padding: 5em 5em 1em 5em ;
 		text-align: center;
 	}
 
@@ -3104,7 +3103,7 @@
 		}
 
 		#header.alt {
-			padding: 7em 5em 4em 5em ;
+			padding: 1em 5em 4em 5em ;
 		}
 
 			#header.alt h1 {
@@ -3133,7 +3132,6 @@
 				-ms-transition-delay: 0s;
 				transition-delay: 0s;
 				display: block;
-				margin: 0 0 1.5em 0;
 			}
 
 				#header.alt .logo img {
@@ -3149,7 +3147,7 @@
 			}
 
 				#header.alt {
-					padding: 6em 4em 3em 4em ;
+					padding: 2em 4em 3em 4em ;
 				}
 
 		}
@@ -3161,7 +3159,7 @@
 			}
 
 				#header.alt {
-					padding: 5em 3em 2em 3em ;
+					padding: 3em 3em 2em 3em ;
 				}
 
 		}
