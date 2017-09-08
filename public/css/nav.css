@@ -41,7 +41,7 @@ body { padding: 2em; }
   height: 45px;
   position: relative;
   margin-left: auto;
-  margin-right: auto;
+  top: 10px;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -56,8 +56,8 @@ body { padding: 2em; }
 #nav-icon1 span{
   display: block;
   position: absolute;
-  height: 9px;
-  width: 100%;
+  height: 6px;
+  width: 60%;
   background: white;
   border-radius: 9px;
   opacity: 1;
@@ -77,15 +77,15 @@ body { padding: 2em; }
 }
 
 #nav-icon1 span:nth-child(2) {
-  top: 18px;
+  top: 8px;
 }
 
 #nav-icon1 span:nth-child(3) {
-  top: 36px;
+  top: 16px;
 }
 
 #nav-icon1.open span:nth-child(1) {
-  top: 18px;
+  top: 8px;
   -webkit-transform: rotate(135deg);
   -moz-transform: rotate(135deg);
   -o-transform: rotate(135deg);
@@ -98,7 +98,7 @@ body { padding: 2em; }
 }
 
 #nav-icon1.open span:nth-child(3) {
-  top: 18px;
+  top: 8px;
   -webkit-transform: rotate(-135deg);
   -moz-transform: rotate(-135deg);
   -o-transform: rotate(-135deg);

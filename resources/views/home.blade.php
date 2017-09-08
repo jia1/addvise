@@ -16,16 +16,40 @@
         </header>
 
         <header class="major">
-            <h3>Addvise Stats</h3>
+            <h2>Addvise Stats</h2>
         </header>
 
-        <p>Number of requests for advice in the last 5 minutes: {{ $num_recent_advisees }}</p>
-        <p>Registered users: {{ $num_users }}</p>
-        <p>Total requests for advice: {{ $num_advice_requests }}</p>
-        <p>Total advice given: {{ $num_advice_given }}</p>
+        <p> 
+            <i> Number of requests for advice in the last 5 minutes: </i> 
+            <div class = "value"> {{ $num_recent_advisees }} </div> <br>
+            <i> Registered users: </i> 
+            <div class = "value"> {{ $num_users }} </div> <br>
+            <i> Total requests for advice: </i> 
+            <div class = "value"> {{ $num_advice_requests }} </div> <br>
+            <i> Total advice given: </i> 
+            <div class = "value"> {{ $num_advice_given }} </div> 
+        </p>
     </section>
 
 </div>
 </div>
 @stop
 
+<style>
+
+p{
+    display:inline;
+}
+
+i{
+    font-size: 20px;
+}
+
+.value{
+    color: red;
+    font-weight: bold;
+    display: inline;
+    font-size: 20px;
+}
+
+</style>
