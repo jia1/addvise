@@ -113,13 +113,20 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
+
+        $(document).ready(function(){
+            $('#nav-icon1').click(function(){
+                $(this).toggleClass('open');
+            });
+        });
+
     </script>
 
     <div id="second">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <ul class="navbar-nav ml-auto">
                     <ul class="nav-item">
-                        <a style ="cursor:pointer; font-size: 200%;" onclick="unhide();">❤❤❤</a>
+                        <a style ="cursor:pointer; font-size: 200%;" onclick="unhide();"><div id = "nav-icon1"><span></span> <span> </span> <span> </span> </div> </a>
                     </ul>
                 </ul>
             <div class="dropdown" style="display:none;">
