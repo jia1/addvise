@@ -68,7 +68,7 @@
 <html lang="en">
 
   <head>
-    <link href="img/addvise-icon.png" rel="shortcut icon" type="image/x-icon" />
+    <link href="img/addvise-icon-square.png" rel="shortcut icon" type="image/x-icon" />
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

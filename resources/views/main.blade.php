@@ -2,7 +2,7 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         <title>Addvise | @yield('title', 'Seek Advice, Give Advice.')</title>
-        <link href="img/addvise-icon.png" rel="shortcut icon" type="image/x-icon" />
+        <link href="img/addvise-icon-square.png" rel="shortcut icon" type="image/x-icon" />
 
         @include('partials._head')
         @yield('stylesheets')
