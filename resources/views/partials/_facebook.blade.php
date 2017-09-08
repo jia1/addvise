@@ -43,6 +43,15 @@ $(document).ready(function() {
                 $('#mainNav').hide();
                 $('#second').hide();
 
+                getUserName((name)=>{
+                    document.getElementById('userName').innerHTML=name;
+                });
+
+
+                getProfilePicture((name)=>{
+                    document.getElementById('profilePic').innerHTML="<img style='border: 3px solid #3a3a3a;' src='"+name+"'/>";;
+                });
+
                 $('.logout').click(function(response) {
                     swal({title: 'Are you sure?',
                         text: 'You are about to log out from Addvise.',
