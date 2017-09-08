@@ -53,7 +53,7 @@ Contribution:
 5. Connect remote DBs (provisioned by cloud services) to Laravel app
 6. Write migration files based on Daphne's input (because I did not know what a foreign key was)
 7. Integrate Facebook SDK (both PHP and JS) into Laravel
-8. Write entire Facebook login flow (what I did with the extended tokens did not seem right though)
+8. Write entire Facebook login flow
 9. Manage Addvise app page and Addvise app advanced settings for app page
 10. Write and maintain routes and middleware
 11. Write Facebook graph API calls for CR (no UD) to Addvise page
@@ -71,8 +71,8 @@ Contribution:
 23. Change all alert and flash messages to be wrapped inside SweetAlert2, add confirmation popups for logging out
 24. Review most commits and pull requests, make suggestions and enforce code discipline where applicable
 25. Consistent dogfooding and suggesting improvements to UI (i.e. must be mobile responsive, standardize CSS, create space for advice, etc)
-26. Write two essays for mid-assignment submission, review final submission pitch and write-up
-27. Attempted to add Facebook webhooks for notifications (+ MailGun and Mailable) but faced too many obstacles (lack of familiarity with PHP and Facebook documentation) and shortage of time due to the above features
+26. Write two essays for mid-assignment submission, improve on final submission responses with technical details, review final submission pitch
+27. Attempted to add Facebook webhooks for notifications (+ MailGun and Mailable) but faced too many obstacles (lack of familiarity with PHP and Facebook documentation) and shortage of time
 
 
 Name: Won Jun Ru Daphne
@@ -119,3 +119,4 @@ Contribution:
 5. Set up front-end pages
 6. Write-up for mid-assignment submission
 7. Write-up for final milestone submission
+
