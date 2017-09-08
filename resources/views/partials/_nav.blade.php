@@ -1,5 +1,5 @@
 <div class="nav-external" style="display: none;">
-    <button id = "login" class="loginBtn loginBtn-facebook">
+    <button id="login" class="loginBtn loginBtn-facebook">
         Login with Facebook
     </button>
 </div>

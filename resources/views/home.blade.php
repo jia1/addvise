@@ -9,7 +9,7 @@
 <!-- Main -->
 <div id="main">
 
-    <!-- Me Section -->
+    <!-- Home Section -->
     <section id="home" class="main special">
         <header class="major">
             <h2>Home</h2>

@@ -21,7 +21,7 @@ class AdviseesController extends Controller {
             } else {
                 $request->session()->flash('cooldown', 'Please wait for another ' . $ttl . ' seconds before posting again.');
             }
-            return redirect('/');
+            return redirect()->action('PagesController@getWelcome');
         }
 
         // Form values
@@ -56,9 +56,8 @@ class AdviseesController extends Controller {
                 $advice_request->save();
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                return redirect('/');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -149,9 +148,8 @@ class AdviseesController extends Controller {
                 }
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                redirect()->action('PagesController@getWelcome');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -184,8 +182,12 @@ class AdviseesController extends Controller {
                     $fb_post_ids_full = array_map(function ($arr) use ($fb_page_id) {
                         return $fb_page_id . '_' .  $arr['fb_post_id'];
                     }, $fb_post_rows_arr);
-                    $serialized_ids = implode(',', $fb_post_ids_full);
 
+                    if (! $fb_post_ids_full) {
+                        return view('needAddvise_me', ['advice_requests' => json_encode($advice_requests)]);
+                    }
+
+                    $serialized_ids = implode(',', $fb_post_ids_full);
                     $response = $fb->get('?fields=created_time,message,id,comments.summary(true)&ids=' . $serialized_ids,
                         $access_token);
                     $data = $response->getDecodedBody();
@@ -206,37 +208,36 @@ class AdviseesController extends Controller {
                             array_push($fb_comment_id_arr, explode('_', $c_val['id'])[1]);
                         }
                         $advice_requests[$key]['comment_count'] = $val['comments']['summary']['total_count'];
-                    }
 
-                    $i = 0;
-                    foreach ($advice_requests as $key=>$val) {
-                        $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
-                    }
+                        $i = 0;
+                        foreach ($advice_requests as $key=>$val) {
+                            $advice_requests[$key]['label'] = $fb_post_rows_arr[$i++]['label'];
+                        }
 
-                    $advice_given_from_db = AdviceGiven::select('id', 'fb_comment_id', 'fb_user_id', 'is_anonymous')
-                        ->whereIn('fb_comment_id', $fb_comment_id_arr)
-                        ->get();
+                        $advice_given_from_db = AdviceGiven::select('id', 'fb_comment_id', 'fb_user_id', 'is_anonymous')
+                            ->whereIn('fb_comment_id', $fb_comment_id_arr)
+                            ->get();
 
-                    if (! $advice_given_from_db) {
-                        ;
-                    } else {
-                        $advice_given_from_db_arr = $advice_given_from_db->toArray();
-                        foreach ($advice_given_from_db_arr as $d_key=>$d_val) {
-                            $i = array_search($d_val['fb_comment_id'], $fb_comment_id_arr);
-                            if ($i === false) {
-                                ;
-                            } else {
-                                if (! $d_val['is_anonymous']) {
-                                    $advice_requests[$key]['comments'][$i]['fb_user_id'] = $d_val['fb_user_id'];
+                        if (! $advice_given_from_db) {
+                            ;
+                        } else {
+                            $advice_given_from_db_arr = $advice_given_from_db->toArray();
+                            foreach ($advice_given_from_db_arr as $d_key=>$d_val) {
+                                $i = array_search($d_val['fb_comment_id'], $fb_comment_id_arr);
+                                if ($i === false) {
+                                    ;
+                                } else {
+                                    if (! $d_val['is_anonymous']) {
+                                        $advice_requests[$key]['comments'][$i]['fb_user_id'] = $d_val['fb_user_id'];
+                                    }
                                 }
                             }
                         }
                     }
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                    dd($e->getMessage());
-                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                    redirect()->action('PagesController@getWelcome');
+                    $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                    return redirect()->action('PagesController@getWelcome');
                 }
             }
         }
