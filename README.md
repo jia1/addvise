@@ -81,6 +81,26 @@ Contribution:
 
 > Database + Front-end Developer
 
+1. Draw & Discussion of ER diagram with Zihan
+2. Fill up Migration files according to Jia Yee database design
+3. Created Addvise first logo version (later disposed)
+4. Added No JavaScript detection and nojs page, following Jia Yee format for route and middleware.
+5. Photoshop logo to a unlited lightbulb for NoJS page
+6. Attempted Facebook logout (later disposed for duplication)
+7. Fixing CSS bugs (integration issue)
+8. Added Facebok Graph Query of Facebook Display Name onto Navigation menu (later moved to Me page)
+9. Integrated bootstrap into welcome page
+10. Fill up the Welcome page
+11. Draw female icon to represent us on welcome page
+12. Shift up the logo and facebook login button to avoid overlapping and see the like button on welcome page
+13. Added policy page with privacy policy and terms page retrieve free from online generator
+14. Created a mobile friendly "hamburger" style navigation bar from scratch for both welcome screen and internal screen
+15. Added toggling of navigation bar in welcome page
+16. Add favicon to the pages
+17. Add return to top button in welcome screen
+18. Write-up for mid-assignment submission
+19. Write-up for final milestone submission
+20. Write-up for pitch
 
 Name: Li Zihan
 
@@ -90,3 +110,10 @@ Contribution:
 
 > Front-end Developer
 
+1. Draw & Discussion of ER diagram with Daphne
+2. Set-up front end files
+3. Add facebook cards
+4. Design facebook cards
+5. Set up front-end pages
+6. Write-up for mid-assignment submission
+7. Write-up for final milestone submission
