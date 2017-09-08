@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Illuminate\Http\Request;
 use Redis;
 use SammyK;
 
@@ -35,8 +36,17 @@ class PagesController extends Controller {
         return view('ask');
     }
 
-    public function getMe(){
-        return view('me');
+    public function getMe(Request $request){
+        $num_advice_requests = DB::table('advice_requests')
+            ->where('fb_user_id', \Request::get('fb_user_id'))
+            ->count();
+        $num_advice_given = DB::table('advice_given')
+            ->where('fb_user_id', \Request::get('fb_user_id'))
+            ->count();
+        return view('me', [
+            'num_advice_requests' => $num_advice_requests,
+            'num_advice_given' => $num_advice_given,
+        ]);
     }
 
     // READ: Addvise Policies
