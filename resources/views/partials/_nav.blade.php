@@ -1,7 +1,11 @@
 <div class="nav-external" style="display: none;">
-    <button id = "login" class="loginBtn loginBtn-facebook">
+    @if (! isset($login_link))
+    {{-- <a class="loginBtn loginBtn-facebook" href="{{ $login_link }}"> --}}
+    @else
+    <a id="login" class="loginBtn loginBtn-facebook">
+    @endif
         Login with Facebook
-    </button>
+    </a>
 </div>
 
 

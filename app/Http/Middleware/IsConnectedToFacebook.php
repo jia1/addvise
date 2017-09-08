@@ -4,10 +4,10 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App;
-use App\Token;
 use App\User;
 use Log;
 use SammyK;
+use Session;
 
 class IsConnectedToFacebook
 {
@@ -22,76 +22,63 @@ class IsConnectedToFacebook
     {
         Log::info('Middleware IsConnectedToFacebook: Executing...');
 
-        $token = '';
         try {
             $fb = App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
-            $token = $fb->getJavaScriptHelper()->getAccessToken();
+            $token = Session::get('fb_user_access_token');
+
+            if (! isset($token)) {
+                // $token = $fb->getAccessTokenFromRedirect();
+                $token = $fb->getJavaScriptHelper()->getAccessToken();
+            }
         } catch (Facebook\Exceptions\FacebookSDKException $e) {
             $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
             return redirect()->action('PagesController@getWelcome');
         }
 
-        if (! $token) {
-            Log::error('Middleware IsConnectedToFacebook: (JavaScript) $token is falsey.');
+        if (! isset($token)) {
+            /*
+            $helper = $fb->getRedirectLoginHelper();
+            if (! $helper->getError()) {
+                abort(403, 'Forbidden');
+            }
+            dd(
+                $helper->getError(),
+                $helper->getErrorCode(),
+                $helper->getErrorReason(),
+                $helper->getErrorDescription()
+            );
+             */
             return redirect()->action('PagesController@getWelcome');
         }
 
-        $fb_user_token_row = Token::where('fb_user_token_temp', $token)->first();
-        $fb_user_token_long = '';
-        $fb_user_id = 0;
-
-        if (! $fb_user_token_row || ! array_key_exists('fb_user_token_long', $fb_user_token_row) || ! array_key_exists('fb_user_id', $fb_user_token_row)) {
-            Log::info('Middleware IsConnectedToFacebook: Token row does not exist for User.');
-        } else {
-            $fb_user_token_long = $fb_user_token_row['fb_user_token_long'];
-            $fb_user_id = $fb_user_token_row['fb_user_id'];
-        }
-
-        if (! $fb_user_token_long) {
+        if (gettype($token) !== 'string' && ! $token->isLongLived()) {
+            $oauth_client = $fb->getOAuth2Client();
             try {
-                $app_id = env('FACEBOOK_APP_ID', false);
-                $app_secret = env('FACEBOOK_APP_SECRET', false);
-
-                if (! $app_id || ! $app_secret) {
-                    // Handle corner case
-                }
-
-                $response = $fb->get('/oauth/access_token?grant_type=fb_exchange_token&client_id='
-                    . $app_id . '&client_secret=' . $app_secret . '&fb_exchange_token=' . $token,
-                    $token);
-                $response_arr = $response->getDecodedBody();
-
-                if (! array_key_exists('access_token', $response_arr)) {
-                    ;
-                } else {
-                    $fb_user_token_long = $response_arr['access_token'];
-                    $m_response = $fb->get('/me', $fb_user_token_long);
-                    $m_response_arr = $m_response->getDecodedBody();
-                    if (! array_key_exists('id', $m_response_arr)) {
-                        ;
-                    } else {
-                        $fb_user_id = $m_response_arr['id'];
-                    }
-                    $user = User::where('fb_user_id', $fb_user_id)->first();
-                    if (! $user) {
-                        $new_user = new User;
-                        $new_user->fb_user_id = $fb_user_id;
-                        $new_user->save();
-                    }
-                    $token_row = Token::firstOrNew(['fb_user_id' => $fb_user_id]);
-                    $token_row->fb_user_token_temp = $token;
-                    $token_row->fb_user_token_long = $fb_user_token_long;
-                    $token_row->fb_user_id = $fb_user_id;
-                    $token_row->save();
-                }
-
-            } catch(\Facebook\Exceptions\FacebookSDKException $e) {
+                $token = $oauth_client->getLongLivedAccessToken($token);
+            } catch (Facebook\Exceptions\FacebookSDKException $e) {
                 $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
                 return redirect()->action('PagesController@getWelcome');
             }
         }
 
-        $request->attributes->add(['fb_user_id' => $fb_user_id, 'fb_user_token' => $fb_user_token_long]);
+        $fb->setDefaultAccessToken($token);
+        Session::put('fb_user_access_token', (string) $token);
+
+        $m_response = $fb->get('/me');
+        $m_response_arr = $m_response->getDecodedBody();
+        if (! array_key_exists('id', $m_response_arr)) {
+            ;
+        } else {
+            $fb_user_id = $m_response_arr['id'];
+            $user = User::where('fb_user_id', $fb_user_id)->first();
+            if (! $user) {
+                $new_user = new User;
+                $new_user->fb_user_id = $fb_user_id;
+                $new_user->save();
+            }
+        }
+
+        $request->attributes->add(['fb_user_id' => $fb_user_id, 'fb_user_token' => $token]);
         return $next($request);
     }
 }
