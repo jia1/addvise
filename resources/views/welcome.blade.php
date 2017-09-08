@@ -163,6 +163,7 @@
             <!-- About -->
             <section id="about" class="main special">
             <div class="container">
+                <br>
                 <header class="major">
                     <h2>About Addvise</h2>
                 <div class="col-lg-12 text-center">
@@ -173,7 +174,11 @@
 
             <div class="row">
             <div class="col-lg-12 text-center">
-                Addvise is a one stop web-application platform that allows anyone to seek for an advice from strangers anonymously. The feeds are hosted on the world leading social media platform Facebook and our aim is to bring a unique experience of seeking and receiving both anonymous and real users replies. We believe that there is a market for anonymity due to human nature of seeking validation, and for an audience who seek for real advice for an embarrassing topic.
+                Addvise. Seek Advice, Give Advice. Sometimes, it feels like the entire world has a ton of advice to offer us: our family, friends, very very distant relatives we meet once a year at reunions. But when we genuinely need advice, we are lost. Nobody seems to have the right answer or we simply don’t know who is the right person to give us the right advice. Well, that’s where our application, Addvise, steps in!  Addvise is a one-stop platform which allows anyone to seek or give advice on any topic. 
+                <br><br>
+                Using Addvise, users can request for advice through the “Ask For Advice” portal. Their request will be reflected in latest #needAddvise section. Advice givers can scroll through these advice requests and respond to any requests by clicking on the “Give Advice” button. Users can use our application or our Facebook Page to request or give advice.
+                <br><br>
+                Moreover, advice seekers and advice givers can choose to be anonymous. For the seekers, it saves them from the utter embarrassment of having to openly admit they require advice. For the givers, it allows them to offer their opinion without fear of personal judgement. Moreover, there will be no personal bias or subjectivity in opinion offered since the advice giver does not know the advice seeker personally. 
             </div>
             </div>
 
