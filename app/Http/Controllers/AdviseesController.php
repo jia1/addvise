@@ -21,7 +21,7 @@ class AdviseesController extends Controller {
             } else {
                 $request->session()->flash('cooldown', 'Please wait for another ' . $ttl . ' seconds before posting again.');
             }
-            return redirect('/');
+            return redirect()->action('PagesController@getWelcome');
         }
 
         // Form values
@@ -56,9 +56,8 @@ class AdviseesController extends Controller {
                 $advice_request->save();
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                return redirect('/');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -149,9 +148,8 @@ class AdviseesController extends Controller {
                 }
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                redirect()->action('PagesController@getWelcome');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -184,8 +182,12 @@ class AdviseesController extends Controller {
                     $fb_post_ids_full = array_map(function ($arr) use ($fb_page_id) {
                         return $fb_page_id . '_' .  $arr['fb_post_id'];
                     }, $fb_post_rows_arr);
-                    $serialized_ids = implode(',', $fb_post_ids_full);
 
+                    if (! $fb_post_ids_full) {
+                        return view('needAddvise_me', ['advice_requests' => json_encode($advice_requests)]);
+                    }
+
+                    $serialized_ids = implode(',', $fb_post_ids_full);
                     $response = $fb->get('?fields=created_time,message,id,comments.summary(true)&ids=' . $serialized_ids,
                         $access_token);
                     $data = $response->getDecodedBody();
@@ -234,9 +236,8 @@ class AdviseesController extends Controller {
                     }
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                    dd($e->getMessage());
-                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                    redirect()->action('PagesController@getWelcome');
+                    $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                    return redirect()->action('PagesController@getWelcome');
                 }
             }
         }

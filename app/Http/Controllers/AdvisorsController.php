@@ -31,9 +31,8 @@ class AdvisorsController extends Controller {
                 $fb_post_message = $response_array['message'];
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                redirect()->action('PagesController@getWelcome');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -73,9 +72,8 @@ class AdvisorsController extends Controller {
                 $advice_given->save();
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                dd($e->getMessage());
-            } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-                redirect()->action('PagesController@getWelcome');
+                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                return redirect()->action('PagesController@getWelcome');
             }
         }
 
@@ -113,8 +111,12 @@ class AdvisorsController extends Controller {
                     $fb_post_ids_full = array_map(function ($arr) use ($fb_page_id) {
                         return $fb_page_id . '_' .  $arr['fb_post_id'];
                     }, $fb_post_rows_arr);
-                    $serialized_ids = implode(',', $fb_post_ids_full);
 
+                    if (! $fb_post_ids_full) {
+                        return view('needAddvise_advice_me', ['advice_requests' => json_encode($advice_requests)]);
+                    }
+
+                    $serialized_ids = implode(',', $fb_post_ids_full);
                     $response = $fb->get('?fields=created_time,message,id,comments.summary(true)&ids=' . $serialized_ids,
                         $access_token);
                     $data = $response->getDecodedBody();
@@ -164,8 +166,7 @@ class AdvisorsController extends Controller {
                     }
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                    dd($e->getMessage());
-                } catch(\Facebook\Exceptions\FacebookResponseException $e) {
+                    $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
                     redirect()->action('PagesController@getWelcome');
                 }
             }
