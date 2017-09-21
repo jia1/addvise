@@ -29,6 +29,21 @@ class IsConnectedToFacebook
             if (! isset($token)) {
                 $token = $fb->getJavaScriptHelper()->getAccessToken();
             }
+
+            $fb_app_access_token = env('FACEBOOK_APP_ID', '') . '|' . env('FACEBOOK_APP_SECRET', '');
+            if (! $fb_app_access_token) {
+                ;
+            }
+            $response = $fb->get(
+                '/debug_token?input_token=' . $token . '&access_token=' . $fb_app_access_token,
+                $fb_app_access_token
+            );
+            $response_arr = $response->getDecodedBody();
+            if (array_key_exists('error', $response_arr)) {
+                Session::forget('fb_user_access_token');
+                $request->session()->flash('error', 'Please login again.');
+                return redirect()->action('PagesController@getWelcome');
+            }
         } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             $request->session()->flash('error', $e->getMessage());
             return redirect()->action('PagesController@getWelcome');
@@ -74,6 +89,7 @@ class IsConnectedToFacebook
             }
         } catch (\Facebook\Exceptions\FacebookSDKException $e) {
             $request->session()->flash('error', $e->getMessage() . ' Please login again.');
+            Session::forget('fb_user_access_token');
             return redirect()->action('PagesController@getWelcome');
         }
 
