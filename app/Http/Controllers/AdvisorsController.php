@@ -11,7 +11,7 @@ use SammyK;
 
 class AdvisorsController extends Controller {
     // CREATE: View for creating an advice in response to a request for advice
-    public function getGiveAdviceNew($id, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+    public function getGiveAdviceNew($id, Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $fb_post_id = AdviceRequest::where('id', $id)->first()->fb_post_id;
 
         $access_token = env('FACEBOOK_PAGE_ACCESS_TOKEN', false);
@@ -31,7 +31,7 @@ class AdvisorsController extends Controller {
                 $fb_post_message = $response_array['message'];
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                $request->session()->flash('error', $e->getMessage());
                 return redirect()->action('PagesController@getWelcome');
             }
         }
@@ -72,7 +72,7 @@ class AdvisorsController extends Controller {
                 $advice_given->save();
 
             } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                $request->session()->flash('error', $e->getMessage());
                 return redirect()->action('PagesController@getWelcome');
             }
         }
@@ -87,7 +87,7 @@ class AdvisorsController extends Controller {
     }
 
     // READ: View for showing all advice given by the user previously
-    public function getGiveAdviceShowByUser(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
+    public function getGiveAdviceShowByUser(Request $request, SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb) {
         $advice_requests = [];
         $fb_post_rows = AdviceGiven::select('fb_post_id')
             ->where('fb_user_id', \Request::get('fb_user_id'))
@@ -166,7 +166,7 @@ class AdvisorsController extends Controller {
                     }
 
                 } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-                    $request->session()->flash('error', 'We are sorry to have befriended the FacebookSDKException. Please give us a moment to unfriend it.');
+                    $request->session()->flash('error', $e->getMessage());
                     redirect()->action('PagesController@getWelcome');
                 }
             }
